@@ -15,13 +15,27 @@ class CobeHiveApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(
-          backgroundColor: const Color.fromRGBO(242, 247, 255, 1),
-          brightness: Brightness.light,
-        ),
-      ),
+          scaffoldBackgroundColor: const Color.fromRGBO(246, 248, 252, 1),
+          fontFamily: "FilsonPro",
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w700,
+              color: Color.fromRGBO(61, 71, 102, 1),
+            ),
+            bodyMedium: TextStyle(
+              fontSize: 20,
+              color: Color.fromRGBO(61, 71, 102, 1),
+            ),
+            bodySmall: TextStyle(
+              fontSize: 15,
+              color: Color.fromRGBO(61, 71, 102, 1),
+            ),
+          )),
       home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      builder: (context, child) {
+        return SafeArea(child: child!);
+      },
     );
   }
 }

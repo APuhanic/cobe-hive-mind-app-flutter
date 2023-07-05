@@ -1,3 +1,6 @@
+import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
+import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,20 +10,25 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Demo Home Page'),
-      ),
-      body: const Center(
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            AppHeader(),
+            Padding(
+              padding:
+                  EdgeInsets.only(left: 18, right: 18, top: 28, bottom: 18),
+              child: CobeSearchBar(),
             ),
-            Text(
-              '0',
-              style: TextStyle(fontSize: 48),
-            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 18,
+                right: 18,
+              ),
+              child: Container(
+                height: 50, //zašto height?
+                child: ChipList(),
+              ),
+            )
           ],
         ),
       ),
