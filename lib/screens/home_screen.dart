@@ -1,5 +1,7 @@
 import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/employee_card.dart';
+import 'package:cobe_hive_mobile_app/widgets/employee_card_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -20,15 +22,13 @@ class HomeScreen extends StatelessWidget {
               child: CobeSearchBar(),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 18,
-                right: 18,
-              ),
+              padding: const EdgeInsets.only(left: 18, bottom: 28),
               child: Container(
                 height: 50, //zašto height?
                 child: ChipList(),
               ),
-            )
+            ),
+            EmployeeCardList(),
           ],
         ),
       ),

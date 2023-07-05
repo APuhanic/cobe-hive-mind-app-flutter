@@ -21,7 +21,7 @@ class AppHeader extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.1),
+                  color: Color.fromRGBO(58, 73, 88, 0.08),
                   offset: Offset(0, 2),
                   blurRadius: 15.0,
                 ),
@@ -45,7 +45,7 @@ class AppHeader extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.1),
+                  color: Color.fromRGBO(58, 73, 88, 0.08),
                   offset: Offset(0, 2),
                   blurRadius: 15.0,
                 ),

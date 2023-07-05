@@ -5,20 +5,16 @@ class EmployeeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Container(
-        height: 100,
+        height: 120,
         decoration: BoxDecoration(
           color: const Color.fromRGBO(255, 255, 255, 1),
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [
             BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.1),
-              offset: Offset(0, 2),
+              color: Color.fromRGBO(58, 73, 88, 0.08),
               blurRadius: 10.0,
             ),
           ],
@@ -26,56 +22,36 @@ class EmployeeCard extends StatelessWidget {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 18, right: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Container(
-                width: 60,
-                height: 60,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/employee.png"),
-                    fit: BoxFit.cover,
-                  ),
+                child: Image.asset(
+                  'images/profile_photo_employee.png',
+                  width: 80,
+                  height: 80,
                 ),
               ),
             ),
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "John Doe",
+                Text(
+                  "Name and Surname",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     color: Color.fromRGBO(61, 71, 102, 1),
                   ),
                 ),
-                const SizedBox(height: 5),
-                const Text(
-                  "Software Engineer",
+                SizedBox(height: 5),
+                Text(
+                  "Text here",
                   style: TextStyle(
                     fontSize: 15,
-                    color: Color.fromRGBO(61, 71, 102, 1),
+                    color: Color.fromRGBO(188, 196, 220, 1),
                   ),
                 ),
               ],
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 18),
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromRGBO(252, 68, 2, 1),
-                ),
-                child: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                ),
-              ),
             ),
           ],
         ),
