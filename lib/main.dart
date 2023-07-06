@@ -1,3 +1,4 @@
+import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,21 +16,21 @@ class CobeHiveApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromRGBO(246, 248, 252, 1),
+          scaffoldBackgroundColor: AppColors.background,
           fontFamily: "FilsonPro",
           textTheme: const TextTheme(
             bodyLarge: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w700,
-              color: Color.fromRGBO(61, 71, 102, 1),
+              color: AppColors.text,
             ),
             bodyMedium: TextStyle(
               fontSize: 20,
-              color: Color.fromRGBO(61, 71, 102, 1),
+              color: AppColors.text,
             ),
             bodySmall: TextStyle(
               fontSize: 15,
-              color: Color.fromRGBO(61, 71, 102, 1),
+              color: AppColors.text,
             ),
           )),
       home: const HomeScreen(title: 'Flutter Demo Home Page'),

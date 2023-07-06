@@ -1,3 +1,4 @@
+import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppHeader extends StatelessWidget {
@@ -17,11 +18,11 @@ class AppHeader extends StatelessWidget {
           Expanded(child: Container()),
           Container(
             decoration: const BoxDecoration(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: AppColors.widgetBackground,
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromRGBO(58, 73, 88, 0.08),
+                  color: AppColors.shadow,
                   offset: Offset(0, 2),
                   blurRadius: 15.0,
                 ),
@@ -32,7 +33,7 @@ class AppHeader extends StatelessWidget {
               style: IconButton.styleFrom(
                 shape: const CircleBorder(),
                 elevation: 20,
-                backgroundColor: Colors.white,
+                backgroundColor: AppColors.widgetBackground,
               ),
               icon: const Icon(Icons.calendar_month_outlined),
               iconSize: 30,
@@ -41,11 +42,11 @@ class AppHeader extends StatelessWidget {
           const SizedBox(width: 15),
           Container(
             decoration: const BoxDecoration(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: AppColors.widgetBackground,
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromRGBO(58, 73, 88, 0.08),
+                  color: AppColors.shadow,
                   offset: Offset(0, 2),
                   blurRadius: 15.0,
                 ),
@@ -56,7 +57,7 @@ class AppHeader extends StatelessWidget {
               style: IconButton.styleFrom(
                 shape: const CircleBorder(),
                 elevation: 8,
-                backgroundColor: Colors.white,
+                backgroundColor: AppColors.widgetBackground,
               ),
               icon: const Icon(Icons.notifications_outlined),
               iconSize: 30,

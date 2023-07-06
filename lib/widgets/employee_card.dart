@@ -1,10 +1,16 @@
+import 'package:cobe_hive_mobile_app/user_ui_model.dart';
 import 'package:flutter/material.dart';
 
 class EmployeeCard extends StatelessWidget {
-  EmployeeCard({super.key});
+  final UserUiModel user;
+  const EmployeeCard(
+    this.user, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(user.name);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Container(
@@ -21,32 +27,55 @@ class EmployeeCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Container(
+            Stack(children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Image.asset(
-                  'images/profile_photo_employee.png',
+                  'images/profile_photo.png',
                   width: 80,
                   height: 80,
                 ),
               ),
-            ),
-            const Column(
+              if (user.status == "Online")
+                Positioned(
+                  top: 15,
+                  right: 32,
+                  child: Container(
+                    width: 16,
+                    height: 16,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Container(
+                        width: 12,
+                        height: 12,
+                        decoration: const BoxDecoration(
+                          color: Color.fromRGBO(0, 186, 136, 1),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ]),
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Name and Surname",
-                  style: TextStyle(
+                  "${user.name} ${user.surname}",
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     color: Color.fromRGBO(61, 71, 102, 1),
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
-                  "Text here",
-                  style: TextStyle(
+                  user.status,
+                  style: const TextStyle(
                     fontSize: 15,
                     color: Color.fromRGBO(188, 196, 220, 1),
                   ),
