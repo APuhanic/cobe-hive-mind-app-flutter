@@ -11,8 +11,8 @@ class EmployeeCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<UserUiModel> users = [
       UserUiModel(
-        name: "Jonn ",
-        surname: "Doe",
+        name: "Wade ",
+        surname: "Warren",
         status: "Online",
         description: "Text here",
       ),
@@ -35,14 +35,14 @@ class EmployeeCardList extends StatelessWidget {
         description: "Text here",
       ),
       UserUiModel(
-        name: "Jonn ",
-        surname: "Doe",
+        name: "Jane ",
+        surname: "Cooper",
         status: "Offline",
         description: "Text here",
       ),
       UserUiModel(
-        name: "Jonn ",
-        surname: "Doe",
+        name: "Arlene ",
+        surname: "McCoy",
         status: "Online",
         description: "Text here",
       ),

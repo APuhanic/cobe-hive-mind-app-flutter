@@ -39,7 +39,7 @@ class _ChipListState extends State<ChipList> {
           },
           selected: isSelected,
           label: Padding(
-            padding: const EdgeInsets.all(6.0),
+            padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5),
             child: Text(statusFilter[index],
                 style: TextStyle(
                   color: isSelected
@@ -50,13 +50,14 @@ class _ChipListState extends State<ChipList> {
                 )),
           ),
           backgroundColor: AppColors.background, //neradi transparrent?
-          shape: const StadiumBorder(
+          shape: StadiumBorder(
             side: BorderSide(
-              color: AppColors.accent,
+              color: isSelected ? AppColors.green : AppColors.textAccent,
               width: 1,
             ),
           ),
           selectedColor: AppColors.green,
+          elevation: isSelected ? 4 : 0,
           selectedShadowColor: AppColors.greenShadow,
           showCheckmark: false,
         );
