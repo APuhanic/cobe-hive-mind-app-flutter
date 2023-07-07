@@ -66,6 +66,7 @@ flutter:
      - images/calendar_icon.png
      - images/profile_photo_employee.png
      - images/profile_photo.png
+     - images/Logo_red.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

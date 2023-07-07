@@ -14,56 +14,77 @@ class AppHeader extends StatelessWidget {
             'images/profile_pic.png',
           ),
           const SizedBox(width: 10),
-          Text("Home", style: Theme.of(context).textTheme.bodyLarge),
-          Expanded(child: Container()),
-          Container(
-            decoration: const BoxDecoration(
-              color: AppColors.widgetBackground,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.shadow,
-                  offset: Offset(0, 2),
-                  blurRadius: 15.0,
-                ),
-              ],
-            ),
-            child: IconButton(
-              onPressed: () {},
-              style: IconButton.styleFrom(
-                shape: const CircleBorder(),
-                elevation: 20,
-                backgroundColor: AppColors.widgetBackground,
-              ),
-              icon: const Icon(Icons.calendar_month_outlined),
-              iconSize: 30,
-            ),
+          Text(
+            'Home',
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
+          Expanded(child: Container()),
+          const _CalendarIcon(),
           const SizedBox(width: 15),
-          Container(
-            decoration: const BoxDecoration(
-              color: AppColors.widgetBackground,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.shadow,
-                  offset: Offset(0, 2),
-                  blurRadius: 15.0,
-                ),
-              ],
-            ),
-            child: IconButton(
-              onPressed: () {},
-              style: IconButton.styleFrom(
-                shape: const CircleBorder(),
-                elevation: 8,
-                backgroundColor: AppColors.widgetBackground,
-              ),
-              icon: const Icon(Icons.notifications_outlined),
-              iconSize: 30,
-            ),
+          const _BellIcon(),
+        ],
+      ),
+    );
+  }
+}
+
+class _BellIcon extends StatelessWidget {
+  const _BellIcon();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.widgetBackground,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.shadow,
+            offset: Offset(0, 2),
+            blurRadius: 15.0,
           ),
         ],
+      ),
+      child: IconButton(
+        onPressed: () {},
+        style: IconButton.styleFrom(
+          shape: const CircleBorder(),
+          elevation: 8,
+          backgroundColor: AppColors.widgetBackground,
+        ),
+        icon: const Icon(Icons.notifications_outlined),
+        iconSize: 30,
+      ),
+    );
+  }
+}
+
+class _CalendarIcon extends StatelessWidget {
+  const _CalendarIcon();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.widgetBackground,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.shadow,
+            offset: Offset(0, 2),
+            blurRadius: 15.0,
+          ),
+        ],
+      ),
+      child: IconButton(
+        onPressed: () {},
+        style: IconButton.styleFrom(
+          shape: const CircleBorder(),
+          elevation: 20,
+          backgroundColor: AppColors.widgetBackground,
+        ),
+        icon: const Icon(Icons.calendar_month_outlined),
+        iconSize: 30,
       ),
     );
   }

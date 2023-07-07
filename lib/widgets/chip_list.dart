@@ -1,6 +1,17 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:flutter/material.dart';
 
+enum ChipStatus {
+  online,
+  offline,
+  sick,
+  away,
+  vacation,
+  parental,
+  other,
+  all,
+}
+
 class ChipList extends StatefulWidget {
   const ChipList({super.key});
 
@@ -10,14 +21,14 @@ class ChipList extends StatefulWidget {
 
 class _ChipListState extends State<ChipList> {
   final List<String> statusFilter = [
-    "All",
-    "Offline",
-    "Online",
-    "Sick",
-    "Away",
-    "Vacation",
-    "Parental",
-    "Other"
+    'All',
+    'Offline',
+    'Online',
+    'Sick',
+    'Away',
+    'Vacation',
+    'Parental',
+    'Other'
   ];
   Set<String> selectedFilters = <String>{};
   @override
@@ -25,21 +36,21 @@ class _ChipListState extends State<ChipList> {
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       itemCount: statusFilter.length,
+      separatorBuilder: (context, index) => const SizedBox(width: 10),
       itemBuilder: (context, index) {
         final isSelected = selectedFilters.contains(statusFilter[index]);
+        debugPrint(selectedFilters.toString());
         return FilterChip(
-          onSelected: (bool selected) {
-            setState(() {
-              if (selected) {
-                selectedFilters.add(statusFilter[index]);
-              } else {
-                selectedFilters.remove(statusFilter[index]);
-              }
-            });
-          },
+          onSelected: (bool selected) => setState(
+            () {
+              selected
+                  ? selectedFilters.add(statusFilter[index])
+                  : selectedFilters.remove(statusFilter[index]);
+            },
+          ),
           selected: isSelected,
           label: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5.0),
             child: Text(statusFilter[index],
                 style: TextStyle(
                   color: isSelected
@@ -49,7 +60,7 @@ class _ChipListState extends State<ChipList> {
                   fontWeight: FontWeight.w100,
                 )),
           ),
-          backgroundColor: AppColors.background, //neradi transparrent?
+          backgroundColor: AppColors.background,
           shape: StadiumBorder(
             side: BorderSide(
               color: isSelected ? AppColors.green : AppColors.textAccent,
@@ -62,7 +73,6 @@ class _ChipListState extends State<ChipList> {
           showCheckmark: false,
         );
       },
-      separatorBuilder: (context, index) => const SizedBox(width: 10),
     );
   }
 }

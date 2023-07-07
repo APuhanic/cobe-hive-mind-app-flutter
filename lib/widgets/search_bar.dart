@@ -1,3 +1,4 @@
+import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CobeSearchBar extends StatelessWidget {
@@ -8,11 +9,11 @@ class CobeSearchBar extends StatelessWidget {
     return Container(
       height: 55,
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(255, 255, 255, 1),
+        color: AppColors.widgetBackground,
         borderRadius: BorderRadius.circular(10),
         boxShadow: const [
           BoxShadow(
-            color: Color.fromRGBO(58, 73, 88, 0.08),
+            color: AppColors.shadow,
             offset: Offset(0, 2),
             blurRadius: 10.0,
           ),
@@ -22,14 +23,14 @@ class CobeSearchBar extends StatelessWidget {
         decoration: InputDecoration(
           labelText: 'Search...',
           labelStyle: TextStyle(
-            color: Color.fromRGBO(188, 196, 220, 1),
+            color: AppColors.accent,
           ),
           prefixIcon: Icon(
             Icons.search,
-            color: Color.fromRGBO(188, 196, 220, 1),
+            color: AppColors.accent,
           ),
           border: InputBorder.none,
-          iconColor: Color.fromRGBO(188, 196, 220, 1),
+          iconColor: AppColors.accent,
         ),
       ),
     );

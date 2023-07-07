@@ -1,7 +1,17 @@
+enum UserStatus {
+  online,
+  offline,
+  parental,
+  away,
+  sick,
+  vacation,
+  other,
+}
+
 class UserUiModel {
   final String name;
   final String surname;
-  final String status;
+  final UserStatus status;
   final String description;
 
   UserUiModel({

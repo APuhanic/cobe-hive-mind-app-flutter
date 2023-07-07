@@ -1,5 +1,6 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';
+import 'package:cobe_hive_mobile_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,7 +10,6 @@ void main() {
 class CobeHiveApp extends StatelessWidget {
   const CobeHiveApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +17,7 @@ class CobeHiveApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           scaffoldBackgroundColor: AppColors.background,
-          fontFamily: "FilsonPro",
+          fontFamily: 'FilsonPro',
           textTheme: const TextTheme(
             bodyLarge: TextStyle(
               fontSize: 30,
@@ -33,9 +33,13 @@ class CobeHiveApp extends StatelessWidget {
               color: AppColors.text,
             ),
           )),
-      home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      home: const HomeScreen(),
       builder: (context, child) {
         return SafeArea(child: child!);
+      },
+      routes: {
+        '/home': (context) => const HomeScreen(),
+        '/login': (context) => const LoginScreen(),
       },
     );
   }

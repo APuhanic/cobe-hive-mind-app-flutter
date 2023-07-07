@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-import '../app_colors.dart';
+import 'package:cobe_hive_mobile_app/app_colors.dart';
 
 class ExpandableFAB extends StatelessWidget {
   const ExpandableFAB({
@@ -13,8 +13,8 @@ class ExpandableFAB extends StatelessWidget {
     return SpeedDial(
       backgroundColor: AppColors.primary,
       icon: Icons.add,
-      activeIcon: Icons.close, //icon when menu is expanded on button
-      foregroundColor: Colors.white, //font color, icon color in button
+      activeIcon: Icons.close,
+      foregroundColor: Colors.white,
       activeBackgroundColor: AppColors.primary,
       activeForegroundColor: Colors.white,
       overlayColor: AppColors.overlayShadow,
@@ -28,7 +28,7 @@ class ExpandableFAB extends StatelessWidget {
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              "Create Request",
+              'Create Request',
               style: TextStyle(color: AppColors.textSecondary),
             ),
           ),
@@ -41,7 +41,7 @@ class ExpandableFAB extends StatelessWidget {
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              "Add Absence",
+              'Add Absence',
               style: TextStyle(
                 color: AppColors.textSecondary,
               ),

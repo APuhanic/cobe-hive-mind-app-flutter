@@ -11,53 +11,51 @@ class EmployeeCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<UserUiModel> users = [
       UserUiModel(
-        name: "Wade ",
-        surname: "Warren",
-        status: "Online",
-        description: "Text here",
+        name: 'Wade ',
+        surname: 'Warren',
+        status: UserStatus.online,
+        description: 'Text here',
       ),
       UserUiModel(
-        name: "Marry ",
-        surname: "Roe",
-        status: "Offline",
-        description: "Text here",
+        name: 'Marry ',
+        surname: 'Roe',
+        status: UserStatus.offline,
+        description: 'Text here',
       ),
       UserUiModel(
-        name: "Tom ",
-        surname: "Smith",
-        status: "Online",
-        description: "Text here",
+        name: 'Tom ',
+        surname: 'Smith',
+        status: UserStatus.parental,
+        description: 'Text here',
       ),
       UserUiModel(
-        name: "Morgan ",
-        surname: "Reed",
-        status: "Offline",
-        description: "Text here",
+        name: 'Morgan ',
+        surname: 'Reed',
+        status: UserStatus.sick,
+        description: 'Text here',
       ),
       UserUiModel(
-        name: "Jane ",
-        surname: "Cooper",
-        status: "Offline",
-        description: "Text here",
+        name: 'Jane ',
+        surname: 'Cooper',
+        status: UserStatus.vacation,
+        description: 'Text here',
       ),
       UserUiModel(
-        name: "Arlene ",
-        surname: "McCoy",
-        status: "Online",
-        description: "Text here",
+        name: 'Arlene ',
+        surname: 'McCoy',
+        status: UserStatus.away,
+        description: 'Text here',
       ),
       UserUiModel(
-        name: "Jonn ",
-        surname: "Doe",
-        status: "Online",
-        description: "Text here",
+        name: 'Jonn ',
+        surname: 'Doe',
+        status: UserStatus.other,
+        description: 'Text here',
       ),
     ];
 
     return Expanded(
-      //pitati zašto je ovo potrebno
       child: ListView.separated(
-        shrinkWrap: true,
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           final user = users[index];
