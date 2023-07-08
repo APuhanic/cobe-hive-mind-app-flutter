@@ -1,10 +1,19 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/login_screen.dart';
+import 'package:cobe_hive_mobile_app/user_filter_provider.dart';
+import 'package:cobe_hive_mobile_app/user_search_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const CobeHiveApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => UserFilterProvider()),
+      ChangeNotifierProvider(create: (context) => UserSearchProvider())
+    ],
+    child: const CobeHiveApp(),
+  ));
 }
 
 class CobeHiveApp extends StatelessWidget {

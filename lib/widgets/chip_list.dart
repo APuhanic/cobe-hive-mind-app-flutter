@@ -1,6 +1,9 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cobe_hive_mobile_app/user_filter_provider.dart';
+import 'package:provider/provider.dart';
+
 enum ChipStatus {
   online,
   offline,
@@ -12,6 +15,17 @@ enum ChipStatus {
   all,
 }
 
+final List<String> statusFilter = [
+  'All',
+  'Offline',
+  'Online',
+  'Sick',
+  'Away',
+  'Vacation',
+  'Parental',
+  'Other'
+];
+
 class ChipList extends StatefulWidget {
   const ChipList({super.key});
 
@@ -20,32 +34,20 @@ class ChipList extends StatefulWidget {
 }
 
 class _ChipListState extends State<ChipList> {
-  final List<String> statusFilter = [
-    'All',
-    'Offline',
-    'Online',
-    'Sick',
-    'Away',
-    'Vacation',
-    'Parental',
-    'Other'
-  ];
-  Set<String> selectedFilters = <String>{};
   @override
   Widget build(BuildContext context) {
+    final userFilterProvider = Provider.of<UserFilterProvider>(context);
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       itemCount: statusFilter.length,
       separatorBuilder: (context, index) => const SizedBox(width: 10),
       itemBuilder: (context, index) {
-        final isSelected = selectedFilters.contains(statusFilter[index]);
-        debugPrint(selectedFilters.toString());
+        final isSelected =
+            userFilterProvider.isFilterSelected(statusFilter[index]);
         return FilterChip(
           onSelected: (bool selected) => setState(
             () {
-              selected
-                  ? selectedFilters.add(statusFilter[index])
-                  : selectedFilters.remove(statusFilter[index]);
+              userFilterProvider.toggleFilter(statusFilter[index]);
             },
           ),
           selected: isSelected,
