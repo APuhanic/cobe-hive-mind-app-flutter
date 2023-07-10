@@ -24,6 +24,10 @@ class ExpandableFAB extends StatelessWidget {
       childPadding: const EdgeInsets.only(right: 90),
       children: [
         SpeedDialChild(
+          width: 240,
+          height: 40,
+          blurRadius: 28,
+          shadowColor: AppColors.orangeShadow,
           backgroundColor: AppColors.primary,
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -37,6 +41,10 @@ class ExpandableFAB extends StatelessWidget {
           ),
         ),
         SpeedDialChild(
+          width: 220,
+          height: 40,
+          blurRadius: 28,
+          shadowColor: AppColors.orangeShadow,
           backgroundColor: AppColors.primary,
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),

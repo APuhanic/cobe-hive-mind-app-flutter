@@ -1,9 +1,10 @@
+import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
 import 'package:flutter/foundation.dart';
 
 class UserFilterProvider extends ChangeNotifier {
-  final Set<String> _selectedFilters = <String>{};
+  final Set<StatusFilter> _selectedFilters = <StatusFilter>{};
 
-  void toggleFilter(String filter) {
+  void toggleFilter(StatusFilter filter) {
     if (_selectedFilters.contains(filter)) {
       _selectedFilters.remove(filter);
     } else {
@@ -12,7 +13,7 @@ class UserFilterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool isFilterSelected(String filter) {
+  bool isFilterSelected(StatusFilter filter) {
     return _selectedFilters.contains(filter);
   }
 

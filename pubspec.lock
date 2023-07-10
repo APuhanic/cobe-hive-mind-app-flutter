@@ -73,10 +73,11 @@ packages:
   flutter_speed_dial:
     dependency: "direct main"
     description:
-      name: flutter_speed_dial
-      sha256: "698a037274a66dbae8697c265440e6acb6ab6cae9ac5f95c749e7944d8f28d41"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "67fd2b8bde1ab4805e520c13fd70dcc7cfe508d4"
+      url: "https://github.com/APuhanic/flutter_speed_dial_modified.git"
+    source: git
     version: "7.0.0"
   flutter_test:
     dependency: "direct dev"

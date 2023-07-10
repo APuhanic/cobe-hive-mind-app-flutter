@@ -16,13 +16,13 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
           AppHeader(),
           Padding(
-            padding: EdgeInsets.only(left: 18, right: 18, top: 28, bottom: 12),
+            padding: EdgeInsets.only(left: 18, right: 18, top: 28, bottom: 8),
             child: CobeSearchBar(),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 18),
             child: SizedBox(
-              height: 60,
+              height: 65,
               child: ChipList(),
             ),
           ),

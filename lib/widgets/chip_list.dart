@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:cobe_hive_mobile_app/user_filter_provider.dart';
 import 'package:provider/provider.dart';
 
-enum ChipStatus {
+enum StatusFilter {
+  all,
   online,
   offline,
   sick,
@@ -12,19 +13,7 @@ enum ChipStatus {
   vacation,
   parental,
   other,
-  all,
 }
-
-final List<String> statusFilter = [
-  'All',
-  'Offline',
-  'Online',
-  'Sick',
-  'Away',
-  'Vacation',
-  'Parental',
-  'Other'
-];
 
 class ChipList extends StatefulWidget {
   const ChipList({super.key});
@@ -39,21 +28,23 @@ class _ChipListState extends State<ChipList> {
     final userFilterProvider = Provider.of<UserFilterProvider>(context);
     return ListView.separated(
       scrollDirection: Axis.horizontal,
-      itemCount: statusFilter.length,
+      itemCount: StatusFilter.values.length,
+      padding: const EdgeInsets.symmetric(horizontal: 18),
       separatorBuilder: (context, index) => const SizedBox(width: 10),
       itemBuilder: (context, index) {
         final isSelected =
-            userFilterProvider.isFilterSelected(statusFilter[index]);
+            userFilterProvider.isFilterSelected(StatusFilter.values[index]);
         return FilterChip(
           onSelected: (bool selected) => setState(
             () {
-              userFilterProvider.toggleFilter(statusFilter[index]);
+              userFilterProvider.toggleFilter(StatusFilter.values[index]);
             },
           ),
           selected: isSelected,
           label: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5.0),
-            child: Text(statusFilter[index],
+            child: Text(
+                '${StatusFilter.values[index].toString().split('.').last[0].toUpperCase()}${StatusFilter.values[index].toString().split('.').last.substring(1)}',
                 style: TextStyle(
                   color: isSelected
                       ? AppColors.textSecondary
