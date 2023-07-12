@@ -1,14 +1,14 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
-import 'package:cobe_hive_mobile_app/user_search_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/user_search_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CobeSearchBar extends StatelessWidget {
+class CobeSearchBar extends ConsumerWidget {
   const CobeSearchBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final searchFilter = Provider.of<UserSearchProvider>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final searchFilter = ref.watch(userSearchProvider.notifier);
 
     return Container(
       height: 55,

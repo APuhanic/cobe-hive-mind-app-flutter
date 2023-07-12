@@ -1,18 +1,12 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/login_screen.dart';
-import 'package:cobe_hive_mobile_app/user_filter_provider.dart';
-import 'package:cobe_hive_mobile_app/user_search_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => UserFilterProvider()),
-      ChangeNotifierProvider(create: (context) => UserSearchProvider())
-    ],
-    child: const CobeHiveApp(),
+  runApp(const ProviderScope(
+    child: CobeHiveApp(),
   ));
 }
 
@@ -42,7 +36,7 @@ class CobeHiveApp extends StatelessWidget {
               color: AppColors.text,
             ),
           )),
-      home: const HomeScreen(),
+      initialRoute: '/login',
       builder: (context, child) {
         return SafeArea(child: child!);
       },

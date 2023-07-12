@@ -40,6 +40,9 @@ dependencies:
       url: https://github.com/APuhanic/flutter_speed_dial_modified.git
   provider: ^6.0.5
 
+  flutter_hooks: ^0.18.0
+  hooks_riverpod: ^2.3.6
+
 
 
 dev_dependencies:

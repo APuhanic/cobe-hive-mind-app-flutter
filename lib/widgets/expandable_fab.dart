@@ -19,7 +19,7 @@ class ExpandableFAB extends StatelessWidget {
       activeForegroundColor: Colors.white,
       overlayColor: AppColors.overlayShadow,
       overlayOpacity: 0.5,
-      spaceBetweenChildren: 15,
+      spaceBetweenChildren: 20,
       childrenButtonSize: const Size(236, 46),
       childPadding: const EdgeInsets.only(right: 90),
       children: [

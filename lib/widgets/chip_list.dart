@@ -1,8 +1,7 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/providers/user_filter_provider.dart';
 import 'package:flutter/material.dart';
-
-import 'package:cobe_hive_mobile_app/user_filter_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 enum StatusFilter {
   all,
@@ -15,38 +14,32 @@ enum StatusFilter {
   other,
 }
 
-class ChipList extends StatefulWidget {
-  const ChipList({super.key});
+class ChipList extends ConsumerWidget {
+  const ChipList({Key? key}) : super(key: key);
 
   @override
-  State<ChipList> createState() => _ChipListState();
-}
-
-class _ChipListState extends State<ChipList> {
-  @override
-  Widget build(BuildContext context) {
-    final userFilterProvider = Provider.of<UserFilterProvider>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       itemCount: StatusFilter.values.length,
       padding: const EdgeInsets.symmetric(horizontal: 18),
       separatorBuilder: (context, index) => const SizedBox(width: 10),
       itemBuilder: (context, index) {
-        final isSelected =
-            userFilterProvider.isFilterSelected(StatusFilter.values[index]);
+        var isFilterSelected =
+            ref.watch(isFilterSelectedProvider(StatusFilter.values[index]));
         return FilterChip(
-          onSelected: (bool selected) => setState(
-            () {
-              userFilterProvider.toggleFilter(StatusFilter.values[index]);
-            },
-          ),
-          selected: isSelected,
+          onSelected: (bool selected) {
+            ref
+                .read(userFilterProvider.notifier)
+                .toggleFilter(StatusFilter.values[index]);
+          },
+          selected: isFilterSelected,
           label: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5.0),
             child: Text(
                 '${StatusFilter.values[index].toString().split('.').last[0].toUpperCase()}${StatusFilter.values[index].toString().split('.').last.substring(1)}',
                 style: TextStyle(
-                  color: isSelected
+                  color: isFilterSelected
                       ? AppColors.textSecondary
                       : AppColors.textAccent,
                   fontSize: 18,
@@ -56,12 +49,12 @@ class _ChipListState extends State<ChipList> {
           backgroundColor: AppColors.background,
           shape: StadiumBorder(
             side: BorderSide(
-              color: isSelected ? AppColors.green : AppColors.textAccent,
+              color: isFilterSelected ? AppColors.green : AppColors.textAccent,
               width: 1,
             ),
           ),
           selectedColor: AppColors.green,
-          elevation: isSelected ? 4 : 0,
+          elevation: isFilterSelected ? 4 : 0,
           selectedShadowColor: AppColors.greenShadow,
           showCheckmark: false,
         );
