@@ -7,13 +7,8 @@ final userFilterProvider =
 class UserFilter extends StateNotifier<Set<StatusFilter>> {
   UserFilter() : super(<StatusFilter>{});
 
-  void toggleFilter(StatusFilter filter) {
-    if (state.contains(filter)) {
-      state = state.difference({filter});
-    } else {
-      state = {...state, filter};
-    }
-  }
+  void toggleFilter(StatusFilter filter) => state =
+      state.contains(filter) ? state.difference({filter}) : {...state, filter};
 }
 
 final isFilterSelectedProvider =

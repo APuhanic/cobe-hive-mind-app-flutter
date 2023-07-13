@@ -39,6 +39,7 @@ class ExpandableFAB extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
+          onTap: () => Navigator.of(context).pushNamed('/create-request'),
         ),
         SpeedDialChild(
           width: 220,

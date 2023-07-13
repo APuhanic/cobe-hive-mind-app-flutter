@@ -1,4 +1,5 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/screens/create_request_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,11 @@ class CobeHiveApp extends StatelessWidget {
               fontSize: 15,
               color: AppColors.text,
             ),
+            titleMedium: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w500,
+              color: AppColors.text,
+            ),
           )),
       initialRoute: '/login',
       builder: (context, child) {
@@ -43,6 +49,7 @@ class CobeHiveApp extends StatelessWidget {
       routes: {
         '/home': (context) => const HomeScreen(),
         '/login': (context) => const LoginScreen(),
+        '/create-request': (context) => const CreateRequestScreen(),
       },
     );
   }

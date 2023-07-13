@@ -19,27 +19,24 @@ final statusFilterMap = {
 final filteredUserListProvider = Provider((ref) {
   final searchQuery = ref.watch(userSearchProvider);
   final userList = ref.watch(userListProvider);
-
+  final userFilter = ref.watch(userFilterProvider);
   List<UserUiModel> filteredUsers = userList.where(
     (user) {
-      if (ref.watch(isFilterSelectedProvider(StatusFilter.all)) ||
-          ref.watch(isFilterEmptyProvider)) {
+      if (userFilter.contains(StatusFilter.all) || userFilter.isEmpty) {
         return true;
       }
-
-      return ref.watch(isFilterSelectedProvider(statusFilterMap[user.status]!));
+      return userFilter.contains(statusFilterMap[user.status]);
     },
   ).toList();
-
   List<UserUiModel> searchedUsers = filteredUsers.where((user) {
-    debugPrint(user.name.toString());
-
     if (searchQuery.isEmpty) {
       return true;
     }
+    debugPrint('${user.name} ${user.surname}');
 
     if (user.name.toLowerCase().contains(searchQuery) ||
-        user.surname.toLowerCase().contains(searchQuery)) {
+        user.surname.toLowerCase().contains(searchQuery) ||
+        '${user.name} ${user.surname}'.toLowerCase().contains(searchQuery)) {
       return true;
     }
 
