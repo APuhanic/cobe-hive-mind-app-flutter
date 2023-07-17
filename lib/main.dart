@@ -23,25 +23,32 @@ class CobeHiveApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.background,
           fontFamily: 'FilsonPro',
           textTheme: const TextTheme(
-            bodyLarge: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w700,
-              color: AppColors.text,
-            ),
-            bodyMedium: TextStyle(
-              fontSize: 20,
-              color: AppColors.text,
-            ),
-            bodySmall: TextStyle(
-              fontSize: 15,
-              color: AppColors.text,
-            ),
-            titleMedium: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w500,
-              color: AppColors.text,
-            ),
-          )),
+              bodyLarge: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
+                color: AppColors.text,
+              ),
+              bodyMedium: TextStyle(
+                fontSize: 20,
+                color: AppColors.text,
+              ),
+              bodySmall: TextStyle(
+                fontSize: 15,
+                color: AppColors.text,
+              ),
+              titleMedium: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                color: AppColors.text,
+              ),
+              labelMedium: TextStyle(
+                fontSize: 16,
+                color: AppColors.text,
+              ),
+              labelLarge: TextStyle(
+                fontSize: 20,
+                color: AppColors.text,
+              ))),
       initialRoute: '/login',
       builder: (context, child) {
         return SafeArea(child: child!);

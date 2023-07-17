@@ -33,7 +33,10 @@ class ExpandableFAB extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               'Create Request',
-              style: TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 14,
+              ),
             ),
           ),
           shape: RoundedRectangleBorder(
@@ -53,6 +56,7 @@ class ExpandableFAB extends StatelessWidget {
               'Add Absence',
               style: TextStyle(
                 color: AppColors.textSecondary,
+                fontSize: 14,
               ),
             ),
           ),

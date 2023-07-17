@@ -3,7 +3,6 @@ import 'package:cobe_hive_mobile_app/providers/user_list_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/user_search_provider.dart';
 import 'package:cobe_hive_mobile_app/user_ui_model.dart';
 import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final statusFilterMap = {
@@ -32,8 +31,6 @@ final filteredUserListProvider = Provider((ref) {
     if (searchQuery.isEmpty) {
       return true;
     }
-    debugPrint('${user.name} ${user.surname}');
-
     if (user.name.toLowerCase().contains(searchQuery) ||
         user.surname.toLowerCase().contains(searchQuery) ||
         '${user.name} ${user.surname}'.toLowerCase().contains(searchQuery)) {

@@ -15,6 +15,7 @@ abstract class AppColors {
 
   static const overlayShadow = Color.fromRGBO(36, 36, 36, 1);
   static const shadow = Color.fromRGBO(58, 73, 88, 0.08);
+  static const shadowDark = Color.fromRGBO(58, 73, 88, 0.2);
 
   static const green = Color.fromRGBO(0, 186, 136, 1);
   static const greenShadow = Color.fromRGBO(0, 186, 136, 0.3);
