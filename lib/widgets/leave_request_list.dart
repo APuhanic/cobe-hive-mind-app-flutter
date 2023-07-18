@@ -1,4 +1,4 @@
-import 'package:cobe_hive_mobile_app/providers/request_list_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/leave_request_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

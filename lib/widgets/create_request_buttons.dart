@@ -1,11 +1,14 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CreateRequestButtons extends StatelessWidget {
+class CreateRequestButtons extends ConsumerWidget {
   const CreateRequestButtons({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final leaveRequest = ref.watch(leaveRequestProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -21,11 +24,16 @@ class CreateRequestButtons extends StatelessWidget {
             ],
           ),
           child: ElevatedButton(
-            onPressed: () => showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return const _RequestCreatedAlertDialog();
-                }),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const _RequestCreatedAlertDialog();
+                  });
+              ref
+                  .read(leaveRequestListProvider.notifier)
+                  .addLeaveRequest(leaveRequest);
+            },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -66,7 +74,7 @@ class _RequestCreatedAlertDialog extends StatelessWidget {
         contentTextStyle: Theme.of(context).textTheme.labelLarge,
         actions: [
           OutlinedButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.pushNamed(context, '/admin-home-screen'),
             style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: AppColors.primary),
                 shape: RoundedRectangleBorder(
