@@ -1,0 +1,77 @@
+import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
+import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/employee_card_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/leave_request_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/search_bar.dart';
+import 'package:flutter/material.dart';
+
+import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
+
+class AdminHomeScreen extends StatelessWidget {
+  const AdminHomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: const Scaffold(
+        body: Column(
+          children: <Widget>[
+            AppHeader(),
+            Padding(
+              padding: EdgeInsets.only(left: 18, right: 18, top: 25),
+              child: _ManageRequestsBar(),
+            ),
+            SizedBox(
+              height: 150,
+              child: LeaveRequestList(),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 18, right: 18, top: 18, bottom: 8),
+              child: CobeSearchBar(),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 18),
+              child: SizedBox(
+                height: 65,
+                child: ChipList(),
+              ),
+            ),
+            EmployeeCardList(),
+          ],
+        ),
+        floatingActionButton: ExpandableFAB(),
+      ),
+    );
+  }
+}
+
+class _ManageRequestsBar extends StatelessWidget {
+  const _ManageRequestsBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'Manage Requests',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        TextButton(
+            onPressed: () {},
+            child: const Text(
+              'See all',
+              style: TextStyle(
+                fontSize: 16,
+                color: AppColors.textOrange,
+              ),
+            ))
+      ],
+    );
+  }
+}

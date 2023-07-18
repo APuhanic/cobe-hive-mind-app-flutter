@@ -11,6 +11,11 @@ abstract class AppColors {
   static const accent = Color.fromRGBO(188, 196, 220, 1);
   static const primary = Color.fromRGBO(252, 68, 2, 1);
 
+  static const warning = Color.fromRGBO(244, 183, 64, 1);
+  static const warningShadow = Color.fromRGBO(244, 183, 64, 0.3);
+
+  static const buttonSecond = Color.fromRGBO(232, 238, 250, 1);
+
   static const widgetBackground = Colors.white;
 
   static const overlayShadow = Color.fromRGBO(36, 36, 36, 1);

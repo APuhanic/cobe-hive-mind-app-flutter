@@ -1,4 +1,5 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/type_of_leave_list.dart';
 import 'package:flutter/material.dart';
@@ -13,19 +14,18 @@ class TypeOfLeaveSelector extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedLeaveType = ref.watch(leaveTypeProvider);
     return GestureDetector(
-      onTap: () {
-        showModalBottomSheet<void>(
-          showDragHandle: true,
-          isScrollControlled: true,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
-          ),
-          context: context,
-          builder: (context) {
-            return const TypeOfLeaveList();
-          },
-        );
-      },
+      onTap: () => showModalBottomSheet<void>(
+        showDragHandle: true,
+        isScrollControlled: true,
+        backgroundColor: AppColors.widgetBackground,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        context: context,
+        builder: (context) {
+          return const TypeOfLeaveList();
+        },
+      ),
       child: Container(
         height: 50,
         decoration: BoxDecoration(
@@ -51,8 +51,7 @@ class TypeOfLeaveSelector extends ConsumerWidget {
                 ),
               ),
             ),
-            Text(
-                '${selectedLeaveType.toString().split('.').last[0].toUpperCase()}${selectedLeaveType.toString().split('.').last.substring(1)}',
+            Text(selectedLeaveType.name.toString().capitalize(),
                 style: Theme.of(context).textTheme.labelMedium),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/screens/admin_home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/create_request_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/login_screen.dart';
@@ -49,7 +50,7 @@ class CobeHiveApp extends StatelessWidget {
                 fontSize: 20,
                 color: AppColors.text,
               ))),
-      initialRoute: '/login',
+      initialRoute: '/admin-home-screen',
       builder: (context, child) {
         return SafeArea(child: child!);
       },
@@ -57,6 +58,7 @@ class CobeHiveApp extends StatelessWidget {
         '/home': (context) => const HomeScreen(),
         '/login': (context) => const LoginScreen(),
         '/create-request': (context) => const CreateRequestScreen(),
+        '/admin-home-screen': (context) => const AdminHomeScreen(),
       },
     );
   }

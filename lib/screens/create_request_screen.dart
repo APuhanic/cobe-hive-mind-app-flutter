@@ -14,41 +14,38 @@ class CreateRequestScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: const Scaffold(
-        body: Column(
-          children: [
-            Padding(
-              padding:
-                  EdgeInsets.only(left: 18, right: 18, bottom: 40, top: 18),
-              child: CreateRequestHeader(),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0),
-              child: TypeOfLeaveSelector(),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
-              child: DatePicker(),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
-              child:
-                  Align(alignment: Alignment.centerLeft, child: Text('Reason')),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0),
-              child: _LeaveReasonTextField(),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 18),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Who can view my request?')),
-            ),
-            ViewPermissionSelector(),
-            Expanded(flex: 2, child: SizedBox()),
-            CreateRequestButtons(),
-            Expanded(flex: 1, child: SizedBox()),
-          ],
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 18),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 40, top: 18),
+                child: CreateRequestHeader(),
+              ),
+              TypeOfLeaveSelector(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: DatePicker(),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: Align(
+                    alignment: Alignment.centerLeft, child: Text('Reason')),
+              ),
+              _LeaveReasonTextField(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 18),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Who can view my request?')),
+              ),
+              ViewPermissionSelector(),
+              Expanded(flex: 2, child: SizedBox()),
+              CreateRequestButtons(),
+              Expanded(flex: 1, child: SizedBox()),
+            ],
+          ),
         ),
       ),
     );

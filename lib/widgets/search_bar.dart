@@ -25,9 +25,9 @@ class CobeSearchBar extends ConsumerWidget {
       ),
       child: TextField(
         decoration: const InputDecoration(
-          labelText: 'Search...',
-          labelStyle: TextStyle(
-            color: AppColors.accent,
+          hintText: 'Search...',
+          hintStyle: TextStyle(
+            color: AppColors.textAccent,
           ),
           prefixIcon: Icon(
             Icons.search,

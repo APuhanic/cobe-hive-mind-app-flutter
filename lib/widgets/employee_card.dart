@@ -1,4 +1,5 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/user_ui_model.dart';
 import 'package:flutter/material.dart';
 
@@ -76,8 +77,7 @@ class EmployeeCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  user.status.toString().split('.').last[0].toUpperCase() +
-                      user.status.toString().split('.').last.substring(1),
+                  user.status.name.toString().capitalize(),
                   style: const TextStyle(
                     fontSize: 15,
                     color: AppColors.textAccent,

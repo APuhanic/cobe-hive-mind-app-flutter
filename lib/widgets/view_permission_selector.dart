@@ -1,4 +1,5 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/leave_request.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +20,11 @@ class ViewPermissionSelector extends ConsumerWidget {
         itemBuilder: (itemBuilderContext, index) {
           final viewPermissionValue = viewPermissionValues[index];
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 18),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: RadioListTile(
               controlAffinity: ListTileControlAffinity.trailing,
               title: Text(
-                '${viewPermissionValue.toString().split('.').last[0].toUpperCase()}${viewPermissionValue.toString().split('.').last.substring(1)}',
+                viewPermissionValue.name.toString().capitalize(),
                 style: const TextStyle(
                   fontSize: 18,
                 ),

@@ -9,9 +9,8 @@ final viewPermissionProvider =
 class ViewPermissionProvider extends StateNotifier<ViewPermission> {
   ViewPermissionProvider() : super(ViewPermission.everyone);
 
-  void setViewPermission(ViewPermission viewPermission) {
-    state = viewPermission;
-  }
+  void setViewPermission(ViewPermission viewPermission) =>
+      state = viewPermission;
 }
 
 final leaveTypeProvider =
@@ -22,7 +21,5 @@ final leaveTypeProvider =
 class LeaveTypeProvider extends StateNotifier<LeaveType> {
   LeaveTypeProvider() : super(LeaveType.parental);
 
-  void setLeaveType(LeaveType leaveType) {
-    state = leaveType;
-  }
+  void setLeaveType(LeaveType leaveType) => state = leaveType;
 }

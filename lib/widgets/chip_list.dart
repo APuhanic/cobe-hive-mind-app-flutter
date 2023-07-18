@@ -1,4 +1,5 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/providers/user_filter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -36,8 +37,7 @@ class ChipList extends ConsumerWidget {
           selected: isFilterSelected,
           label: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5.0),
-            child: Text(
-                '${StatusFilter.values[index].toString().split('.').last[0].toUpperCase()}${StatusFilter.values[index].toString().split('.').last.substring(1)}',
+            child: Text(StatusFilter.values[index].name.toString().capitalize(),
                 style: TextStyle(
                   color: isFilterSelected
                       ? AppColors.textSecondary
