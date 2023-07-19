@@ -19,24 +19,36 @@ class ExpandableFAB extends StatelessWidget {
       activeForegroundColor: Colors.white,
       overlayColor: AppColors.overlayShadow,
       overlayOpacity: 0.5,
-      spaceBetweenChildren: 15,
+      spaceBetweenChildren: 20,
       childrenButtonSize: const Size(236, 46),
       childPadding: const EdgeInsets.only(right: 90),
       children: [
         SpeedDialChild(
+          width: 240,
+          height: 40,
+          blurRadius: 28,
+          shadowColor: AppColors.orangeShadow,
           backgroundColor: AppColors.primary,
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               'Create Request',
-              style: TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 14,
+              ),
             ),
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
+          onTap: () => Navigator.of(context).pushNamed('/create-request'),
         ),
         SpeedDialChild(
+          width: 220,
+          height: 40,
+          blurRadius: 28,
+          shadowColor: AppColors.orangeShadow,
           backgroundColor: AppColors.primary,
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
@@ -44,6 +56,7 @@ class ExpandableFAB extends StatelessWidget {
               'Add Absence',
               style: TextStyle(
                 color: AppColors.textSecondary,
+                fontSize: 14,
               ),
             ),
           ),

@@ -1,11 +1,15 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/providers/user_search_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CobeSearchBar extends StatelessWidget {
+class CobeSearchBar extends ConsumerWidget {
   const CobeSearchBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final searchFilter = ref.watch(userSearchProvider.notifier);
+
     return Container(
       height: 55,
       decoration: BoxDecoration(
@@ -19,11 +23,11 @@ class CobeSearchBar extends StatelessWidget {
           ),
         ],
       ),
-      child: const TextField(
-        decoration: InputDecoration(
-          labelText: 'Search...',
-          labelStyle: TextStyle(
-            color: AppColors.accent,
+      child: TextField(
+        decoration: const InputDecoration(
+          hintText: 'Search...',
+          hintStyle: TextStyle(
+            color: AppColors.textAccent,
           ),
           prefixIcon: Icon(
             Icons.search,
@@ -32,6 +36,7 @@ class CobeSearchBar extends StatelessWidget {
           border: InputBorder.none,
           iconColor: AppColors.accent,
         ),
+        onChanged: (value) => searchFilter.state = value,
       ),
     );
   }

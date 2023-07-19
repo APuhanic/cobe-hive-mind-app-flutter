@@ -1,7 +1,11 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/capitalize_string.dart';
+import 'package:cobe_hive_mobile_app/providers/user_filter_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-enum ChipStatus {
+enum StatusFilter {
+  all,
   online,
   offline,
   sick,
@@ -9,51 +13,31 @@ enum ChipStatus {
   vacation,
   parental,
   other,
-  all,
 }
 
-class ChipList extends StatefulWidget {
-  const ChipList({super.key});
+class ChipList extends ConsumerWidget {
+  const ChipList({Key? key}) : super(key: key);
 
   @override
-  State<ChipList> createState() => _ChipListState();
-}
-
-class _ChipListState extends State<ChipList> {
-  final List<String> statusFilter = [
-    'All',
-    'Offline',
-    'Online',
-    'Sick',
-    'Away',
-    'Vacation',
-    'Parental',
-    'Other'
-  ];
-  Set<String> selectedFilters = <String>{};
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.separated(
       scrollDirection: Axis.horizontal,
-      itemCount: statusFilter.length,
+      itemCount: StatusFilter.values.length,
+      padding: const EdgeInsets.symmetric(horizontal: 18),
       separatorBuilder: (context, index) => const SizedBox(width: 10),
       itemBuilder: (context, index) {
-        final isSelected = selectedFilters.contains(statusFilter[index]);
-        debugPrint(selectedFilters.toString());
+        var isFilterSelected =
+            ref.watch(isFilterSelectedProvider(StatusFilter.values[index]));
         return FilterChip(
-          onSelected: (bool selected) => setState(
-            () {
-              selected
-                  ? selectedFilters.add(statusFilter[index])
-                  : selectedFilters.remove(statusFilter[index]);
-            },
-          ),
-          selected: isSelected,
+          onSelected: (bool selected) => ref
+              .read(userFilterProvider.notifier)
+              .toggleFilter(StatusFilter.values[index]),
+          selected: isFilterSelected,
           label: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5.0),
-            child: Text(statusFilter[index],
+            child: Text(StatusFilter.values[index].name.toString().capitalize(),
                 style: TextStyle(
-                  color: isSelected
+                  color: isFilterSelected
                       ? AppColors.textSecondary
                       : AppColors.textAccent,
                   fontSize: 18,
@@ -63,12 +47,12 @@ class _ChipListState extends State<ChipList> {
           backgroundColor: AppColors.background,
           shape: StadiumBorder(
             side: BorderSide(
-              color: isSelected ? AppColors.green : AppColors.textAccent,
+              color: isFilterSelected ? AppColors.green : AppColors.textAccent,
               width: 1,
             ),
           ),
           selectedColor: AppColors.green,
-          elevation: isSelected ? 4 : 0,
+          elevation: isFilterSelected ? 4 : 0,
           selectedShadowColor: AppColors.greenShadow,
           showCheckmark: false,
         );
