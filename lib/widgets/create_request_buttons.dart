@@ -74,7 +74,10 @@ class _RequestCreatedAlertDialog extends StatelessWidget {
         contentTextStyle: Theme.of(context).textTheme.labelLarge,
         actions: [
           OutlinedButton(
-            onPressed: () => Navigator.pushNamed(context, '/admin-home-screen'),
+            onPressed: () {
+              Navigator.of(context)
+                  .popUntil(ModalRoute.withName('/admin-home-screen'));
+            },
             style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: AppColors.primary),
                 shape: RoundedRectangleBorder(
