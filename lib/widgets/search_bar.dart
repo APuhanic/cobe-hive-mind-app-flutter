@@ -36,7 +36,7 @@ class CobeSearchBar extends ConsumerWidget {
           border: InputBorder.none,
           iconColor: AppColors.accent,
         ),
-        onChanged: (value) => searchFilter.setSearchQuery(value),
+        onChanged: (value) => searchFilter.state = value,
       ),
     );
   }

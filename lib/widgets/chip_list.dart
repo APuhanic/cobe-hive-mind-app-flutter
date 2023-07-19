@@ -29,11 +29,9 @@ class ChipList extends ConsumerWidget {
         var isFilterSelected =
             ref.watch(isFilterSelectedProvider(StatusFilter.values[index]));
         return FilterChip(
-          onSelected: (bool selected) {
-            ref
-                .read(userFilterProvider.notifier)
-                .toggleFilter(StatusFilter.values[index]);
-          },
+          onSelected: (bool selected) => ref
+              .read(userFilterProvider.notifier)
+              .toggleFilter(StatusFilter.values[index]),
           selected: isFilterSelected,
           label: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5.0),

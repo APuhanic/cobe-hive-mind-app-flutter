@@ -17,12 +17,22 @@ class ViewPermissionSelector extends ConsumerWidget {
     return SizedBox(
       height: 200,
       child: ListView.builder(
+        itemCount: viewPermissionValues.length,
         itemBuilder: (itemBuilderContext, index) {
           final viewPermissionValue = viewPermissionValues[index];
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: RadioListTile(
               controlAffinity: ListTileControlAffinity.trailing,
+              value: viewPermissionValue,
+              groupValue: viewPermission,
+              onChanged: (ViewPermission? value) =>
+                  ref.read(viewPermissionProvider.notifier).state = value!,
+              tileColor: AppColors.widgetBackground,
+              activeColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
               title: Text(
                 viewPermissionValue.name.toString().capitalize(),
                 style: const TextStyle(
@@ -34,20 +44,9 @@ class ViewPermissionSelector extends ConsumerWidget {
                     fontSize: 14,
                     color: AppColors.textAccent,
                   )),
-              value: viewPermissionValue,
-              groupValue: viewPermission,
-              onChanged: (ViewPermission? value) => ref
-                  .read(viewPermissionProvider.notifier)
-                  .setViewPermission(value!),
-              tileColor: AppColors.widgetBackground,
-              activeColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
             ),
           );
         },
-        itemCount: viewPermissionValues.length,
       ),
     );
   }

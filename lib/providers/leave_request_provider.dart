@@ -5,18 +5,19 @@ import 'package:cobe_hive_mobile_app/providers/view_permission_provider.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final leaveRequestProvider = Provider((ref) {
+final leaveRequestProvider = Provider.autoDispose((ref) {
   final leaveType = ref.watch(leaveTypeProvider);
   final leaveReason = ref.watch(leaveReasonProvider);
   final viewPermission = ref.watch(viewPermissionProvider);
 
   return LeaveRequest(
-      user: 'john',
-      viewPermission: viewPermission,
-      startDate: DateTime.now(),
-      endDate: DateTime.now(),
-      reason: leaveReason,
-      leaveType: leaveType);
+    user: 'john',
+    viewPermission: viewPermission,
+    startDate: DateTime.now(),
+    endDate: DateTime.now(),
+    reason: leaveReason,
+    leaveType: leaveType,
+  );
 });
 
 final leaveRequestListProvider =

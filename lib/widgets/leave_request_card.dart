@@ -54,10 +54,13 @@ class LeaveRequestCard extends StatelessWidget {
                       color: AppColors.buttonSecond,
                     ),
                     child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.arrow_forward_rounded,
-                            color: AppColors.text)),
-                  )
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.arrow_forward_rounded,
+                        color: AppColors.text,
+                      ),
+                    ),
+                  ),
                 ],
               )
             ],

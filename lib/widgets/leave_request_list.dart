@@ -12,16 +12,16 @@ class LeaveRequestList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final leaveRequestList = ref.watch(leaveRequestListProvider);
     return ListView.separated(
+      itemCount: leaveRequestList.length,
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 18),
+      separatorBuilder: (context, index) => const SizedBox(
+        width: 18,
+      ),
       itemBuilder: (context, index) {
         final request = leaveRequestList[index];
         return LeaveRequestCard(leaveRequest: request);
       },
-      separatorBuilder: (context, index) => const SizedBox(
-        width: 18,
-      ),
-      itemCount: leaveRequestList.length,
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(horizontal: 18),
     );
   }
 }

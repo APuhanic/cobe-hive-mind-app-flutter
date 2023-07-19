@@ -31,7 +31,9 @@ class CreateRequestScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: Align(
-                    alignment: Alignment.centerLeft, child: Text('Reason')),
+                  alignment: Alignment.centerLeft,
+                  child: Text('Reason'),
+                ),
               ),
               _LeaveReasonTextField(),
               Padding(
