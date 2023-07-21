@@ -1,6 +1,7 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:cobe_hive_mobile_app/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/leave_request.dart';
+import 'package:cobe_hive_mobile_app/screens/request_details_screen.dart';
 import 'package:cobe_hive_mobile_app/widgets/approved_chip.dart';
 import 'package:cobe_hive_mobile_app/widgets/pending_chip.dart';
 import 'package:flutter/material.dart';
@@ -9,16 +10,18 @@ class LeaveRequestStatusCard extends StatelessWidget {
   const LeaveRequestStatusCard({
     super.key,
     required this.leaveRequest,
+    this.width = 300,
   });
   final LeaveRequest leaveRequest;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     final date =
         '${leaveRequest.startDate.month}.${leaveRequest.startDate.day} - ${leaveRequest.endDate.month}.${leaveRequest.endDate.day + 10}';
     return Container(
-      width: 300,
       height: 150,
+      width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: AppColors.widgetBackground,
@@ -58,7 +61,12 @@ class LeaveRequestStatusCard extends StatelessWidget {
                   ),
                   child: IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/request-details');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RequestDetailsScreen(
+                                    leaveRequest: leaveRequest,
+                                  )));
                     },
                     icon: const Icon(
                       Icons.arrow_forward_rounded,

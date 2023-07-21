@@ -38,7 +38,7 @@ class CreateRequestButtons extends ConsumerWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-              backgroundColor: AppColors.textOrange,
+              backgroundColor: AppColors.buttonOrange,
             ),
             child: const Text('Save', style: TextStyle(fontSize: 16)),
           ),
@@ -75,7 +75,7 @@ class _RequestCreatedAlertDialog extends StatelessWidget {
         actions: [
           OutlinedButton(
             onPressed: () => Navigator.of(context).popUntil(ModalRoute.withName(
-                '/admin-home-screen')), //Nece raditi ako se zove za home screen
+                '/admin-home-screen')), //vjv nece raditi ako se zove za home screen
             style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: AppColors.primary),
                 shape: RoundedRectangleBorder(

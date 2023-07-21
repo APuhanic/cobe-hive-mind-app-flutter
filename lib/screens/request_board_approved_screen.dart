@@ -1,7 +1,7 @@
 import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
-import 'package:cobe_hive_mobile_app/widgets/leave_request_status_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/request_board_header.dart';
+import 'package:cobe_hive_mobile_app/widgets/approvedd_request_list.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -36,9 +36,8 @@ class RequestBoardApprovedScreen extends ConsumerWidget {
               ],
             ),
             Expanded(
-              child: LeaveRequestStatusList(
+              child: ApprovedRequestList(
                 leaveRequestList: ref.watch(leaveRequestListApprovedProvider),
-                axis: Axis.vertical,
               ),
             ),
           ],

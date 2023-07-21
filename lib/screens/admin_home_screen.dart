@@ -3,7 +3,7 @@ import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/employee_card_list.dart';
-import 'package:cobe_hive_mobile_app/widgets/leave_request_status_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_screen_request_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -26,9 +26,8 @@ class AdminHomeScreen extends ConsumerWidget {
               child: _ManageRequestsBar(),
             ),
             SizedBox(
-              height:
-                  150, //zasto height ako vec ima definirarn height u widgetu za leaverequesttstatuscard
-              child: LeaveRequestStatusList(
+              height: 150,
+              child: AdminScreenRequestList(
                 leaveRequestList: ref.watch(leaveRequestListPendingProvider),
               ),
             ),
@@ -68,9 +67,7 @@ class _ManageRequestsBar extends StatelessWidget {
           ),
         ),
         TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/request-board');
-            },
+            onPressed: () => Navigator.pushNamed(context, '/request-board'),
             child: const Text(
               'See all',
               style: TextStyle(

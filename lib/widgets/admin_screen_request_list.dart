@@ -4,13 +4,11 @@ import 'package:cobe_hive_mobile_app/widgets/leave_request_status_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class LeaveRequestStatusList extends ConsumerWidget {
-  const LeaveRequestStatusList({
+class AdminScreenRequestList extends ConsumerWidget {
+  const AdminScreenRequestList({
     super.key,
-    this.axis = Axis.horizontal,
     required this.leaveRequestList,
   });
-  final Axis axis;
   final List<LeaveRequest> leaveRequestList;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,13 +24,10 @@ class LeaveRequestStatusList extends ConsumerWidget {
           )
         : ListView.separated(
             itemCount: leaveRequestList.length,
-            scrollDirection: axis,
-            padding: axis == Axis.horizontal
-                ? const EdgeInsets.symmetric(horizontal: 18)
-                : const EdgeInsets.symmetric(vertical: 18),
-            separatorBuilder: (context, index) => SizedBox(
-              width: axis == Axis.horizontal ? 18 : 0,
-              height: axis == Axis.vertical ? 18 : 0,
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            separatorBuilder: (context, index) => const SizedBox(
+              width: 18,
             ),
             itemBuilder: (context, index) {
               final request = leaveRequestList[index];

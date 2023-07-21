@@ -15,6 +15,7 @@ abstract class AppColors {
   static const warningShadow = Color.fromRGBO(244, 183, 64, 0.3);
 
   static const buttonSecond = Color.fromRGBO(232, 238, 250, 1);
+  static const buttonOrange = Color.fromRGBO(252, 68, 2, 1);
 
   static const widgetBackground = Colors.white;
 
@@ -25,6 +26,8 @@ abstract class AppColors {
   static const green = Color.fromRGBO(0, 186, 136, 1);
   static const greenShadow = Color.fromRGBO(0, 186, 136, 0.3);
   static const orangeShadow = Color.fromRGBO(252, 68, 2, 0.3);
+
+  static const gray = Color.fromRGBO(233, 236, 244, 1);
 
   static const orangeGradient = LinearGradient(
     colors: [
