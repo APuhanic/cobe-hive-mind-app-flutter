@@ -1,17 +1,18 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
-import 'package:cobe_hive_mobile_app/widgets/leave_request_status_card.dart';
+import 'package:cobe_hive_mobile_app/providers/selected_request_provider.dart';
+import 'package:cobe_hive_mobile_app/widgets/request_details_status_card.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cobe_hive_mobile_app/leave_request.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RequestDetailsScreen extends ConsumerWidget {
-  const RequestDetailsScreen({super.key, required this.leaveRequest});
+  const RequestDetailsScreen({super.key});
 
-  final LeaveRequest leaveRequest;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectedLeaveRequest = ref.watch(selectedLeaveRequestProvider);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -49,70 +50,91 @@ class RequestDetailsScreen extends ConsumerWidget {
                 )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: LeaveRequestStatusCard(
-                leaveRequest: leaveRequest,
-                width: double.infinity,
-              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.0),
+              child: RequestDetailsStatusCard(),
             ),
             const _LeaveDate(),
-            _LeaveReason(leaveRequest: leaveRequest),
-            Expanded(
-              child: Container(),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Reject',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: AppColors.primary,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 50),
-                Container(
-                  width: 110,
-                  decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.orangeShadow,
-                        blurRadius: 11,
-                        offset: Offset(0, 5),
-                      )
-                    ],
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      ref
-                          .read(leaveRequestListProvider.notifier)
-                          .approveLeaveRequest(leaveRequest);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      backgroundColor: const Color.fromRGBO(252, 68, 2, 1),
-                    ),
-                    child: const Text(
-                      'Approve',
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            _LeaveReason(leaveRequest: selectedLeaveRequest),
+            Expanded(child: Container()),
+            _RejectApproveButtons(leaveRequest: selectedLeaveRequest),
             const SizedBox(height: 50),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _RejectApproveButtons extends ConsumerWidget {
+  const _RejectApproveButtons({
+    required this.leaveRequest,
+  });
+
+  final LeaveRequest leaveRequest;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    var isApproved = leaveRequest.status == RequestStatus.approved;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          onPressed:
+              leaveRequest.status == RequestStatus.approved ? null : () {},
+          child: Text(
+            'Reject',
+            style: TextStyle(
+              fontSize: 17,
+              color: isApproved
+                  ? AppColors.primary.withOpacity(0.65)
+                  : AppColors.primary,
+            ),
+          ),
+        ),
+        const SizedBox(width: 50),
+        Container(
+          width: 110,
+          decoration: BoxDecoration(
+            boxShadow: [
+              isApproved
+                  ? const BoxShadow(color: Colors.transparent)
+                  : const BoxShadow(
+                      color: AppColors.orangeShadow,
+                      blurRadius: 11,
+                      offset: Offset(0, 5),
+                    ),
+            ],
+          ),
+          child: ElevatedButton(
+            onPressed: leaveRequest.status == RequestStatus.approved
+                ? null
+                : () {
+                    //promjena u listi u provideru
+                    ref
+                        .read(leaveRequestListProvider.notifier)
+                        .approveLeaveRequest(leaveRequest);
+                    //promjena u odabranom requestu u provideru za ovaj screen
+                    ref.read(selectedLeaveRequestProvider.notifier).state =
+                        leaveRequest.copyWith(status: RequestStatus.approved);
+                  },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              backgroundColor: AppColors.primary,
+              disabledBackgroundColor: AppColors.primary.withOpacity(0.65),
+            ),
+            child: const Text(
+              'Approve',
+              style: TextStyle(
+                fontSize: 17,
+                color: AppColors.textSecondary,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -147,13 +169,15 @@ class _LeaveReason extends StatelessWidget {
                 horizontal: 20,
                 vertical: 15,
               ),
-              child: Text(
-                leaveRequest.reason,
-                style: const TextStyle(
-                  fontSize: 17,
-                  color: AppColors.text,
-                ),
-              ),
+              child: leaveRequest.reason == ''
+                  ? const Text('No reason provided')
+                  : Text(
+                      leaveRequest.reason,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        color: AppColors.text,
+                      ),
+                    ),
             ),
           ),
         ],

@@ -4,8 +4,8 @@ import 'package:cobe_hive_mobile_app/widgets/request_approval_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RequestApprovalList extends ConsumerWidget {
-  const RequestApprovalList({super.key});
+class RequestsToApproveList extends ConsumerWidget {
+  const RequestsToApproveList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,12 +16,12 @@ class RequestApprovalList extends ConsumerWidget {
         : Expanded(
             child: ListView.separated(
               scrollDirection: Axis.vertical,
+              separatorBuilder: (context, index) => const SizedBox(height: 15),
+              itemCount: leaveRequestList.length,
               itemBuilder: (context, index) {
                 final leaveRequest = leaveRequestList[index];
                 return RequestApprovalCard(leaveRequest: leaveRequest);
               },
-              separatorBuilder: (context, index) => const SizedBox(height: 15),
-              itemCount: leaveRequestList.length,
             ),
           );
   }

@@ -1,5 +1,4 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
-import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/employee_card_list.dart';
@@ -17,35 +16,33 @@ class AdminHomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
+      child: const Scaffold(
         body: Column(
           children: <Widget>[
-            const AppHeader(),
-            const Padding(
+            AppHeader(),
+            Padding(
               padding: EdgeInsets.only(left: 18, right: 18, top: 25),
               child: _ManageRequestsBar(),
             ),
             SizedBox(
               height: 150,
-              child: AdminScreenRequestList(
-                leaveRequestList: ref.watch(leaveRequestListPendingProvider),
-              ),
+              child: AdminScreenRequestList(),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 18, right: 18, top: 18, bottom: 8),
               child: CobeSearchBar(),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(bottom: 18),
               child: SizedBox(
                 height: 65,
                 child: ChipList(),
               ),
             ),
-            const EmployeeCardList(),
+            EmployeeCardList(),
           ],
         ),
-        floatingActionButton: const ExpandableFAB(),
+        floatingActionButton: ExpandableFAB(),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
 import 'package:cobe_hive_mobile_app/widgets/request_board_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/approvedd_request_list.dart';
@@ -10,17 +9,18 @@ class RequestBoardApprovedScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
+    return const Scaffold(
       resizeToAvoidBottomInset: false,
+      floatingActionButton: ExpandableFAB(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
+        padding: EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(bottom: 40, top: 18),
               child: RequestBoardHeader(),
             ),
-            const Row(
+            Row(
               children: [
                 Text(
                   'Approved',
@@ -36,14 +36,11 @@ class RequestBoardApprovedScreen extends ConsumerWidget {
               ],
             ),
             Expanded(
-              child: ApprovedRequestList(
-                leaveRequestList: ref.watch(leaveRequestListApprovedProvider),
-              ),
+              child: ApprovedRequestList(),
             ),
           ],
         ),
       ),
-      floatingActionButton: const ExpandableFAB(),
     );
   }
 }

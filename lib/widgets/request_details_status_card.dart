@@ -7,22 +7,19 @@ import 'package:cobe_hive_mobile_app/widgets/pending_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class LeaveRequestStatusCard extends ConsumerWidget {
-  const LeaveRequestStatusCard({
+class RequestDetailsStatusCard extends ConsumerWidget {
+  const RequestDetailsStatusCard({
     super.key,
-    required this.leaveRequest,
-    this.width = 300,
   });
-  final LeaveRequest leaveRequest;
-  final double width;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final leaveRequest = ref.watch(selectedLeaveRequestProvider);
     final date =
         '${leaveRequest.startDate.month}.${leaveRequest.startDate.day} - ${leaveRequest.endDate.month}.${leaveRequest.endDate.day + 10}';
     return Container(
       height: 150,
-      width: width,
+      width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: AppColors.widgetBackground,
@@ -55,38 +52,9 @@ class LeaveRequestStatusCard extends ConsumerWidget {
                 leaveRequest.status == RequestStatus.pending
                     ? const PendingChip()
                     : const ApprovedChip(),
-                _RequestDetailsButton(leaveRequest: leaveRequest)
               ],
             )
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _RequestDetailsButton extends ConsumerWidget {
-  const _RequestDetailsButton({
-    required this.leaveRequest,
-  });
-
-  final LeaveRequest leaveRequest;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
-        color: AppColors.buttonSecond,
-      ),
-      child: IconButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/request-details');
-          ref.watch(selectedLeaveRequestProvider.notifier).state = leaveRequest;
-        },
-        icon: const Icon(
-          Icons.arrow_forward_rounded,
-          color: AppColors.text,
         ),
       ),
     );

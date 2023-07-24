@@ -11,6 +11,7 @@ class RequestBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      floatingActionButton: const ExpandableFAB(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
@@ -33,9 +34,8 @@ class RequestBoardScreen extends StatelessWidget {
                   height: 30,
                 )),
                 TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/request-board-approved');
-                  },
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/request-board-approved'),
                   child: const Text(
                     'See Approved',
                     style: TextStyle(
@@ -46,11 +46,10 @@ class RequestBoardScreen extends StatelessWidget {
                 )
               ],
             ),
-            const RequestApprovalList(),
+            const RequestsToApproveList(),
           ],
         ),
       ),
-      floatingActionButton: const ExpandableFAB(),
     );
   }
 }

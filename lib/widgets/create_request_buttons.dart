@@ -8,7 +8,7 @@ class CreateRequestButtons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final leaveRequest = ref.watch(leaveRequestProvider);
+    final leaveRequest = ref.watch(leaveRequestOptionsProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -27,6 +27,7 @@ class CreateRequestButtons extends ConsumerWidget {
             onPressed: () {
               showDialog(
                   context: context,
+                  barrierDismissible: false,
                   builder: (BuildContext context) {
                     return const _RequestCreatedAlertDialog();
                   });

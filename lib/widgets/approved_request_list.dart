@@ -1,5 +1,5 @@
 import 'package:cobe_hive_mobile_app/app_colors.dart';
-import 'package:cobe_hive_mobile_app/leave_request.dart';
+import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/leave_request_status_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,11 +7,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ApprovedRequestList extends ConsumerWidget {
   const ApprovedRequestList({
     super.key,
-    required this.leaveRequestList,
   });
-  final List<LeaveRequest> leaveRequestList;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final leaveRequestList = ref.watch(leaveRequestListApprovedProvider);
+
     return leaveRequestList.isEmpty
         ? const Center(
             child: Text(
@@ -30,9 +30,9 @@ class ApprovedRequestList extends ConsumerWidget {
               height: 18,
             ),
             itemBuilder: (context, index) {
-              final request = leaveRequestList[index];
+              final leaveRequest = leaveRequestList[index];
               return LeaveRequestStatusCard(
-                leaveRequest: request,
+                leaveRequest: leaveRequest,
               );
             },
           );

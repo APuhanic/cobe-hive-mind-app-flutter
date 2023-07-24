@@ -24,4 +24,25 @@ class LeaveRequest {
     required this.leaveType,
     required this.status,
   });
+
+  LeaveRequest copyWith({
+    String? id,
+    String? user,
+    ViewPermission? viewPermission,
+    DateTime? startDate,
+    DateTime? endDate,
+    String? reason,
+    LeaveType? leaveType,
+    RequestStatus? status,
+  }) =>
+      LeaveRequest(
+        id: id ?? this.id,
+        endDate: endDate ?? this.endDate,
+        leaveType: leaveType ?? this.leaveType,
+        reason: reason ?? this.reason,
+        startDate: startDate ?? this.startDate,
+        status: status ?? this.status,
+        user: user ?? this.user,
+        viewPermission: viewPermission ?? this.viewPermission,
+      );
 }
