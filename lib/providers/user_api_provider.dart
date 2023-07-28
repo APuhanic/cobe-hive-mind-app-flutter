@@ -22,7 +22,7 @@ class LoginNotifier extends StateNotifier<Response> {
   UserApi userApi;
   Future<Response> login(String email, String password) async {
     try {
-      final Response response = await userApi.login(email, password);
+      final response = await userApi.login(email, password);
       debugPrint('RESPONSE DATA ${response.data.toString()}');
       return response;
     } catch (e) {
