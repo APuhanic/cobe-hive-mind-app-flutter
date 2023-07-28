@@ -1,4 +1,4 @@
-import 'package:cobe_hive_mobile_app/leave_request.dart';
+import 'package:cobe_hive_mobile_app/data/leave_request.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_reason_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_type_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/view_permission_provider.dart';

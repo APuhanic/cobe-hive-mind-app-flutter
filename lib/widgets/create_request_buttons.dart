@@ -1,4 +1,4 @@
-import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -75,8 +75,10 @@ class _RequestCreatedAlertDialog extends StatelessWidget {
         contentTextStyle: Theme.of(context).textTheme.labelLarge,
         actions: [
           OutlinedButton(
-            onPressed: () => Navigator.of(context).popUntil(ModalRoute.withName(
-                '/admin-home-screen')), //vjv nece raditi ako se zove za home screen
+            onPressed: () {
+              int count = 0;
+              Navigator.of(context).popUntil((_) => count++ >= 2);
+            },
             style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: AppColors.primary),
                 shape: RoundedRectangleBorder(

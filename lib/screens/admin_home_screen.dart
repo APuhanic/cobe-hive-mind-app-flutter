@@ -1,4 +1,4 @@
-import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/employee_card_list.dart';

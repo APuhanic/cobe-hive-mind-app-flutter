@@ -1,4 +1,4 @@
-import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_reason_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/create_request_buttons.dart';
 import 'package:cobe_hive_mobile_app/widgets/create_request_header.dart';
@@ -37,7 +37,7 @@ class CreateRequestScreen extends StatelessWidget {
                   child: Text('Reason'),
                 ),
               ),
-              LeaveReasonTextField(),
+              _LeaveReasonTextField(),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 18),
                 child: Align(
@@ -56,8 +56,8 @@ class CreateRequestScreen extends StatelessWidget {
   }
 }
 
-class LeaveReasonTextField extends ConsumerWidget {
-  const LeaveReasonTextField({super.key});
+class _LeaveReasonTextField extends ConsumerWidget {
+  const _LeaveReasonTextField();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

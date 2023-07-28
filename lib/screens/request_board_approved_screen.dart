@@ -1,6 +1,6 @@
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
 import 'package:cobe_hive_mobile_app/widgets/request_board_header.dart';
-import 'package:cobe_hive_mobile_app/widgets/approvedd_request_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/approved_request_list.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
