@@ -1,6 +1,6 @@
 import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:cobe_hive_mobile_app/capitalize_string.dart';
-import 'package:cobe_hive_mobile_app/data/user_ui_model.dart';
+import 'package:cobe_hive_mobile_app/data/user_model.dart';
 import 'package:flutter/material.dart';
 
 class EmployeeCard extends StatelessWidget {

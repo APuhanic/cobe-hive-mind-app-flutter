@@ -1,7 +1,7 @@
 import 'package:cobe_hive_mobile_app/providers/user_filter_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/user_list_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/user_search_provider.dart';
-import 'package:cobe_hive_mobile_app/data/user_ui_model.dart';
+import 'package:cobe_hive_mobile_app/data/user_model.dart';
 import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

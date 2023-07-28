@@ -23,10 +23,9 @@ class LoginNotifier extends StateNotifier<Response> {
   Future<Response> login(String email, String password) async {
     try {
       final response = await userApi.login(email, password);
-      debugPrint('RESPONSE DATA ${response.data.toString()}');
+      debugPrint('RESPONSE DATA ${response.statusCode.toString()}');
       return response;
     } catch (e) {
-      debugPrint('ERROR $e');
       rethrow;
     }
   }

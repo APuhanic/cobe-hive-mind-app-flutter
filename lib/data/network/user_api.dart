@@ -17,6 +17,7 @@ class UserApi {
           'password': password,
         },
       );
+      debugPrint('RESPONSE DATA ${response.statusCode.toString()}');
       return response;
     } on DioException {
       rethrow;

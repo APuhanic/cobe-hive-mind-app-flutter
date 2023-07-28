@@ -78,10 +78,9 @@ class _LoginButton extends ConsumerWidget {
         ],
       ),
       child: ElevatedButton(
-        onPressed: () async {
-          final response =
-              await ref.read(loginProvider.notifier).login(email, password);
-          if (response.statusCode == 200) {
+        onPressed: () {
+          ref.read(loginProvider.notifier).login(email, password);
+          if (ref.read(loginProvider).statusCode == 200) {
             Navigator.pushNamed(context, '/home');
           } else {
             ScaffoldMessenger.of(context).showSnackBar(

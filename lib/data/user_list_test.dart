@@ -1,4 +1,4 @@
-import 'package:cobe_hive_mobile_app/data/user_ui_model.dart';
+import 'package:cobe_hive_mobile_app/data/user_model.dart';
 
 abstract class UserListTest {
   static final List<UserUiModel> users = [
