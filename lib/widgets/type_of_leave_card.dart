@@ -1,6 +1,6 @@
-import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:cobe_hive_mobile_app/capitalize_string.dart';
-import 'package:cobe_hive_mobile_app/leave_request.dart';
+import 'package:cobe_hive_mobile_app/data/leave_request.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_type_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

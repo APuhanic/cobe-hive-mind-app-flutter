@@ -1,18 +1,19 @@
-import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/employee_card_list.dart';
-import 'package:cobe_hive_mobile_app/widgets/leave_request_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_screen_request_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AdminHomeScreen extends StatelessWidget {
+class AdminHomeScreen extends ConsumerWidget {
   const AdminHomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: const Scaffold(
@@ -25,7 +26,7 @@ class AdminHomeScreen extends StatelessWidget {
             ),
             SizedBox(
               height: 150,
-              child: LeaveRequestList(),
+              child: AdminScreenRequestList(),
             ),
             Padding(
               padding: EdgeInsets.only(left: 18, right: 18, top: 18, bottom: 8),
@@ -63,7 +64,7 @@ class _ManageRequestsBar extends StatelessWidget {
           ),
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, '/request-board'),
             child: const Text(
               'See all',
               style: TextStyle(

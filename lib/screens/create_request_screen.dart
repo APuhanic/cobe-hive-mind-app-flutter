@@ -1,10 +1,12 @@
-import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/app_colors.dart';
+import 'package:cobe_hive_mobile_app/providers/leave_reason_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/create_request_buttons.dart';
 import 'package:cobe_hive_mobile_app/widgets/create_request_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/date_picker.dart';
 import 'package:cobe_hive_mobile_app/widgets/type_of_leave_selector.dart';
 import 'package:cobe_hive_mobile_app/widgets/view_permission_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CreateRequestScreen extends StatelessWidget {
   const CreateRequestScreen({super.key});
@@ -54,11 +56,11 @@ class CreateRequestScreen extends StatelessWidget {
   }
 }
 
-class _LeaveReasonTextField extends StatelessWidget {
+class _LeaveReasonTextField extends ConsumerWidget {
   const _LeaveReasonTextField();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
@@ -88,6 +90,8 @@ class _LeaveReasonTextField extends StatelessWidget {
           ),
           contentPadding: const EdgeInsets.all(18),
         ),
+        onChanged: (value) =>
+            ref.watch(leaveReasonProvider.notifier).state = value,
       ),
     );
   }

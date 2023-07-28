@@ -1,8 +1,8 @@
 import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class PendingChip extends StatelessWidget {
-  const PendingChip({
+class ApprovedChip extends StatelessWidget {
+  const ApprovedChip({
     super.key,
   });
 
@@ -11,10 +11,10 @@ class PendingChip extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: AppColors.warning,
+        color: AppColors.green,
         boxShadow: const [
           BoxShadow(
-            color: AppColors.warningShadow,
+            color: AppColors.greenShadow,
             blurRadius: 11,
             offset: Offset(0, 1),
           ),
@@ -23,7 +23,7 @@ class PendingChip extends StatelessWidget {
       child: const Padding(
         padding: EdgeInsets.all(8.0),
         child: Text(
-          'Pending',
+          'Approved',
           style: TextStyle(
             color: AppColors.textSecondary,
             fontSize: 15,

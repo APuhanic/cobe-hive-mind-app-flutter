@@ -1,8 +1,11 @@
-import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:cobe_hive_mobile_app/screens/admin_home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/create_request_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/login_screen.dart';
+import 'package:cobe_hive_mobile_app/screens/request_board_approved_screen.dart';
+import 'package:cobe_hive_mobile_app/screens/request_board_screen.dart';
+import 'package:cobe_hive_mobile_app/screens/request_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -50,7 +53,7 @@ class CobeHiveApp extends StatelessWidget {
                 fontSize: 20,
                 color: AppColors.text,
               ))),
-      initialRoute: '/admin-home-screen',
+      initialRoute: '/login',
       builder: (context, child) {
         return SafeArea(child: child!);
       },
@@ -59,6 +62,10 @@ class CobeHiveApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/create-request': (context) => const CreateRequestScreen(),
         '/admin-home-screen': (context) => const AdminHomeScreen(),
+        '/request-board': (context) => const RequestBoardScreen(),
+        '/request-board-approved': (context) =>
+            const RequestBoardApprovedScreen(),
+        '/request-details': (context) => const RequestDetailsScreen(),
       },
     );
   }

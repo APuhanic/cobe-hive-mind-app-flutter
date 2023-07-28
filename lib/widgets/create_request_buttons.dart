@@ -1,4 +1,4 @@
-import 'package:cobe_hive_mobile_app/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/app_colors.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,7 +8,7 @@ class CreateRequestButtons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final leaveRequest = ref.watch(leaveRequestProvider);
+    final leaveRequest = ref.watch(leaveRequestOptionsProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -27,6 +27,7 @@ class CreateRequestButtons extends ConsumerWidget {
             onPressed: () {
               showDialog(
                   context: context,
+                  barrierDismissible: false,
                   builder: (BuildContext context) {
                     return const _RequestCreatedAlertDialog();
                   });
@@ -38,7 +39,7 @@ class CreateRequestButtons extends ConsumerWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-              backgroundColor: AppColors.textOrange,
+              backgroundColor: AppColors.buttonOrange,
             ),
             child: const Text('Save', style: TextStyle(fontSize: 16)),
           ),
@@ -75,8 +76,8 @@ class _RequestCreatedAlertDialog extends StatelessWidget {
         actions: [
           OutlinedButton(
             onPressed: () {
-              Navigator.of(context)
-                  .popUntil(ModalRoute.withName('/admin-home-screen'));
+              int count = 0;
+              Navigator.of(context).popUntil((_) => count++ >= 2);
             },
             style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: AppColors.primary),

@@ -13,12 +13,12 @@ class EmployeeCardList extends ConsumerWidget {
     return Expanded(
       child: ListView.separated(
         scrollDirection: Axis.vertical,
+        separatorBuilder: (context, index) => const SizedBox(height: 15),
+        itemCount: filteredUserList.length,
         itemBuilder: (context, index) {
           final user = filteredUserList[index];
           return EmployeeCard(user);
         },
-        separatorBuilder: (context, index) => const SizedBox(height: 15),
-        itemCount: filteredUserList.length,
       ),
     );
   }
