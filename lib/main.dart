@@ -1,4 +1,4 @@
-import 'package:cobe_hive_mobile_app/data/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:cobe_hive_mobile_app/screens/admin_home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/create_request_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';

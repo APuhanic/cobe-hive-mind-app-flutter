@@ -1,6 +1,6 @@
-import 'package:cobe_hive_mobile_app/data/network/endpoints.dart';
+import 'package:cobe_hive_mobile_app/data/constants/endpoints.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   final Dio _dio;
@@ -11,7 +11,8 @@ class DioClient {
   DioClient(this._dio) {
     _dio
       ..options.baseUrl = Endpoints.baseUrl
-      ..options.responseType = ResponseType.json;
+      ..options.responseType = ResponseType.json
+      ..interceptors.add(PrettyDioLogger());
   }
 
   Future<Response> get(String path) async {
@@ -26,7 +27,6 @@ class DioClient {
   }
 
   Future<Response> post(String path, dynamic data) async {
-    debugPrint(path);
     return _dio.post(
       path,
       data: data,

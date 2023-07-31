@@ -1,7 +1,7 @@
-import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
-import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
-import 'package:cobe_hive_mobile_app/widgets/employee_card_list.dart';
-import 'package:cobe_hive_mobile_app/widgets/search_bar.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/app_header.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/chip_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/employee_card_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';

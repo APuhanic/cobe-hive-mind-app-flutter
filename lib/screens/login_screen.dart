@@ -1,6 +1,8 @@
-import 'package:cobe_hive_mobile_app/data/app_colors.dart';
-import 'package:cobe_hive_mobile_app/providers/login_provider.dart';
-import 'package:cobe_hive_mobile_app/providers/user_api_provider.dart';
+import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
+import 'package:cobe_hive_mobile_app/providers/login_screen_providers/email_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/login_screen_providers/is_password_visible_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/login_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/login_screen_providers/password_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -61,8 +63,6 @@ class _LoginScreenState extends State<LoginScreen> {
 class _LoginButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final email = ref.watch(emailProvider);
-    final password = ref.watch(passwordProvider);
     return Container(
       height: 50,
       width: 300,
@@ -79,17 +79,20 @@ class _LoginButton extends ConsumerWidget {
       ),
       child: ElevatedButton(
         onPressed: () {
-          ref.read(loginProvider.notifier).login(email, password);
-          if (ref.read(loginProvider).statusCode == 200) {
-            Navigator.pushNamed(context, '/home');
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Invalid credentials'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
+          ref.read(loginProvider.notifier).login().then(
+            (value) {
+              if (value.statusCode == 200) {
+                Navigator.pushNamed(context, '/home');
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Invalid credentials'),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
+            },
+          );
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,
@@ -109,7 +112,7 @@ class _PasswordInput extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isVisible = ref.watch(isVisibleProvider);
+    final isVisible = ref.watch(isPasswordVisibleProvider);
     return SizedBox(
       width: 300,
       child: Column(
@@ -131,8 +134,9 @@ class _PasswordInput extends ConsumerWidget {
                 borderSide: const BorderSide(color: AppColors.accent),
               ),
               suffixIcon: IconButton(
-                onPressed: () =>
-                    ref.read(isVisibleProvider.notifier).state = !isVisible,
+                onPressed: () => ref
+                    .read(isPasswordVisibleProvider.notifier)
+                    .state = !isVisible,
                 icon: const Icon(Icons.visibility, color: AppColors.accent),
               ),
             ),
@@ -161,8 +165,9 @@ class _EmailInput extends ConsumerWidget {
             child: Text('Email', style: Theme.of(context).textTheme.bodySmall),
           ),
           TextFormField(
-            onChanged: (value) =>
-                ref.read(emailProvider.notifier).state = value,
+            onChanged: (value) {
+              ref.read(emailProvider.notifier).state = value;
+            },
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.widgetBackground,

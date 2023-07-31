@@ -1,10 +1,10 @@
-import 'package:cobe_hive_mobile_app/data/app_colors.dart';
-import 'package:cobe_hive_mobile_app/providers/leave_request_provider.dart';
-import 'package:cobe_hive_mobile_app/providers/selected_request_provider.dart';
-import 'package:cobe_hive_mobile_app/widgets/request_details_status_card.dart';
+import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
+import 'package:cobe_hive_mobile_app/providers/leave_request_providers/leave_request_list_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/create_request_screen_providers/selected_request_provider.dart';
+import 'package:cobe_hive_mobile_app/widgets/request_board/request_details_status_card.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cobe_hive_mobile_app/data/leave_request.dart';
+import 'package:cobe_hive_mobile_app/data/models/leave_request.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RequestDetailsScreen extends ConsumerWidget {

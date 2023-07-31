@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-import 'package:cobe_hive_mobile_app/data/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 
 class ExpandableFAB extends StatelessWidget {
   const ExpandableFAB({
