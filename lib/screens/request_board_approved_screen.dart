@@ -29,15 +29,10 @@ class RequestBoardApprovedScreen extends ConsumerWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                Expanded(
-                    child: SizedBox(
-                  height: 30,
-                )),
+                Expanded(child: SizedBox(height: 30)),
               ],
             ),
-            Expanded(
-              child: ApprovedRequestList(),
-            ),
+            Expanded(child: ApprovedRequestList()),
           ],
         ),
       ),

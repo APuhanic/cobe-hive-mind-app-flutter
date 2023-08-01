@@ -11,13 +11,8 @@ class UserFilter extends StateNotifier<Set<StatusFilter>> {
       state.contains(filter) ? state.difference({filter}) : {...state, filter};
 }
 
-final isFilterSelectedProvider =
-    Provider.family<bool, StatusFilter>((ref, filter) {
-  final userFilter = ref.watch(userFilterProvider);
-  return userFilter.contains(filter);
-});
+final isFilterSelectedProvider = Provider.family<bool, StatusFilter>(
+    (ref, filter) => ref.watch(userFilterProvider).contains(filter));
 
-final isFilterEmptyProvider = Provider<bool>((ref) {
-  final userFilter = ref.watch(userFilterProvider);
-  return userFilter.isEmpty;
-});
+final isFilterEmptyProvider =
+    Provider<bool>((ref) => ref.watch(userFilterProvider).isEmpty);

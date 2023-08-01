@@ -17,8 +17,7 @@ class EmployeeCardList extends ConsumerWidget {
             separatorBuilder: (context, index) => const SizedBox(height: 15),
             itemCount: users.length,
             itemBuilder: (context, index) {
-              final user = users[index];
-              return EmployeeCard(user);
+              return EmployeeCard(users[index]);
             },
           ),
         );

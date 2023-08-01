@@ -3,7 +3,6 @@ import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/chip_list.da
 import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/employee_card_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/search_bar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Column(
-        children: <Widget>[
+        children: [
           AppHeader(),
           Padding(
             padding: EdgeInsets.only(left: 18, right: 18, top: 28, bottom: 8),

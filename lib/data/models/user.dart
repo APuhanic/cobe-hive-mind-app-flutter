@@ -30,7 +30,7 @@ class User {
     this.phone,
     this.imageUrl,
   });
-  UserStatus _convertUserStatus(status) {
+  UserStatus _convertToUserStatus(status) {
     switch (status) {
       case 'online':
         return UserStatus.online;
@@ -56,7 +56,7 @@ class User {
     name = json['name'];
     surname = json['surname'];
     role = json['role'];
-    status = _convertUserStatus(json['status']);
+    status = _convertToUserStatus(json['status']);
     isAdmin = json['isAdmin'];
     email = json['email'];
     phone = json['phone'];

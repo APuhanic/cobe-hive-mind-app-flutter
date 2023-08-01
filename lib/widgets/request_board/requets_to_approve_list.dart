@@ -19,8 +19,8 @@ class RequestsToApproveList extends ConsumerWidget {
               separatorBuilder: (context, index) => const SizedBox(height: 15),
               itemCount: leaveRequestList.length,
               itemBuilder: (context, index) {
-                final leaveRequest = leaveRequestList[index];
-                return RequestApprovalCard(leaveRequest: leaveRequest);
+                return RequestApprovalCard(
+                    leaveRequest: leaveRequestList[index]);
               },
             ),
           );

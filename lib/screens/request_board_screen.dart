@@ -29,10 +29,7 @@ class RequestBoardScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const Expanded(
-                    child: SizedBox(
-                  height: 30,
-                )),
+                const Expanded(child: SizedBox(height: 30)),
                 TextButton(
                   onPressed: () =>
                       Navigator.pushNamed(context, '/request-board-approved'),

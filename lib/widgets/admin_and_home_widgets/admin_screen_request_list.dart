@@ -25,13 +25,10 @@ class AdminScreenRequestList extends ConsumerWidget {
             itemCount: leaveRequestList.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 18),
-            separatorBuilder: (context, index) => const SizedBox(
-              width: 18,
-            ),
+            separatorBuilder: (context, index) => const SizedBox(width: 18),
             itemBuilder: (context, index) {
-              final request = leaveRequestList[index];
               return LeaveRequestStatusCard(
-                leaveRequest: request,
+                leaveRequest: leaveRequestList[index],
               );
             },
           );

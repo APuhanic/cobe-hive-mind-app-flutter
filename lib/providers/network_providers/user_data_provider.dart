@@ -4,6 +4,9 @@ import 'package:cobe_hive_mobile_app/providers/network_providers/user_repository
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final userDataProvider = StateNotifierProvider<UserDataNotifier, List<User>>(
+    (ref) => UserDataNotifier(ref.read(userRepositoryProvider)));
+
 class UserDataNotifier extends StateNotifier<List<User>> {
   UserDataNotifier(this.userRepository) : super([]) {
     getUsers();
@@ -17,8 +20,3 @@ class UserDataNotifier extends StateNotifier<List<User>> {
     });
   }
 }
-
-final userDataProvider =
-    StateNotifierProvider<UserDataNotifier, List<User>>((ref) {
-  return UserDataNotifier(ref.read(userRepositoryProvider));
-});

@@ -48,9 +48,7 @@ class RequestApprovalCard extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    'images/profile_pic.png',
-                  ),
+                  Image.asset('images/profile_pic.png'),
                   const Expanded(child: SizedBox()),
                   Padding(
                     padding: const EdgeInsets.only(right: 14.0),
