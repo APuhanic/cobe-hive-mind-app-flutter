@@ -30,6 +30,7 @@ class User {
     this.phone,
     this.imageUrl,
   });
+
   UserStatus _convertToUserStatus(status) {
     switch (status) {
       case 'online':

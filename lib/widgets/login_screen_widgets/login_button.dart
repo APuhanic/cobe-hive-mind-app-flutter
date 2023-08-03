@@ -27,7 +27,11 @@ class LoginButton extends ConsumerWidget {
           ref.read(loginProvider.notifier).login().then(
             (value) {
               if (value.statusCode == 200) {
-                Navigator.pushNamed(context, '/home');
+                if (value.isAdmin!) {
+                  Navigator.pushNamed(context, '/admin-home-screen');
+                } else {
+                  Navigator.pushNamed(context, '/home');
+                }
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(

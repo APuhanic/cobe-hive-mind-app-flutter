@@ -1,5 +1,5 @@
 import 'package:cobe_hive_mobile_app/data/models/user.dart';
-import 'package:cobe_hive_mobile_app/providers/network_providers/user_data_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/user_list_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/home_screen_providers/user_filter_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/home_screen_providers/user_search_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/chip_list.dart';
@@ -17,7 +17,7 @@ final statusFilterMap = {
 
 final filteredUserListProvider = FutureProvider<List<User>>((ref) async {
   final searchQuery = ref.watch(userSearchProvider);
-  final userList = ref.watch(userDataProvider);
+  final userList = ref.watch(userListProvider);
   final userFilter = ref.watch(userFilterProvider);
 
   List<User> filteredUsers = userList.where(
