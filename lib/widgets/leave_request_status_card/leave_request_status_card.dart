@@ -19,7 +19,7 @@ class LeaveRequestStatusCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final date =
-        '${leaveRequest.startDate.month}.${leaveRequest.startDate.day} - ${leaveRequest.endDate.month}.${leaveRequest.endDate.day + 10}';
+        '${leaveRequest.startDate}.${leaveRequest.startDate} - ${leaveRequest.endDate}.${leaveRequest.endDate}';
     return Container(
       height: 150,
       width: width,
@@ -33,7 +33,7 @@ class LeaveRequestStatusCard extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              leaveRequest.leaveType.name.capitalize(),
+              leaveRequest.leaveType!.name.capitalize(),
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
@@ -41,7 +41,7 @@ class LeaveRequestStatusCard extends ConsumerWidget {
               ),
             ),
             Text(
-              '${leaveRequest.endDate.day + 10} days・ $date ${leaveRequest.startDate.year}',
+              '${leaveRequest.endDate} days・ $date ${leaveRequest.startDate}',
               textAlign: TextAlign.left,
               style: const TextStyle(
                 fontSize: 15,

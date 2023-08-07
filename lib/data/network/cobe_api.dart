@@ -27,4 +27,9 @@ class CobeApi {
     final Response response = await _dioClient.get('${Endpoints.users}/$id');
     return response;
   }
+
+  Future<Response> getAbesences() async {
+    final Response response = await _dioClient.get(Endpoints.absence);
+    return response;
+  }
 }

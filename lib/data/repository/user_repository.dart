@@ -17,4 +17,15 @@ class UserRepository {
       throw errorMessage;
     }
   }
+
+  Future<User> getUserById(String id) async {
+    try {
+      final response = await _cobeApi.getUserById(id);
+      final user = User.fromJson(response.data);
+      return user;
+    } on DioException catch (e) {
+      final errorMessage = e.toString();
+      throw errorMessage;
+    }
+  }
 }

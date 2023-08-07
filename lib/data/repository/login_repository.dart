@@ -17,7 +17,7 @@ class LoginRepository {
       final user = await _cobeApi.getUserById(userID);
       return LoginResponse(
         userID: userID,
-        isAdmin: User.fromJson(user.data).isAdmin,
+        user: User.fromJson(user.data),
         statusCode: response.statusCode,
       );
     } on DioException catch (e) {

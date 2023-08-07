@@ -1,11 +1,13 @@
+import 'package:cobe_hive_mobile_app/data/models/user.dart';
+
 class LoginResponse {
   String? userID;
-  bool? isAdmin;
+  User? user;
   int? statusCode;
 
   LoginResponse({
     this.userID,
-    this.isAdmin,
+    this.user,
     this.statusCode,
   });
 }

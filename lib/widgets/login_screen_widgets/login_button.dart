@@ -27,7 +27,7 @@ class LoginButton extends ConsumerWidget {
           ref.read(loginProvider.notifier).login().then(
             (value) {
               if (value.statusCode == 200) {
-                if (value.isAdmin!) {
+                if (value.user!.isAdmin!) {
                   Navigator.pushNamed(context, '/admin-home-screen');
                 } else {
                   Navigator.pushNamed(context, '/home');

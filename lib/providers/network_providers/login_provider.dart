@@ -23,6 +23,7 @@ class LoginNotifier extends StateNotifier<LoginResponse> {
 
   Future<LoginResponse> login() async {
     final response = await loginRepository.login(email, password);
+    state = response;
     return response;
   }
 }

@@ -36,7 +36,7 @@ class LeaveReason extends StatelessWidget {
               child: leaveRequest.reason == ''
                   ? const Text('No reason provided')
                   : Text(
-                      leaveRequest.reason,
+                      leaveRequest.reason!,
                       style: const TextStyle(
                         fontSize: 17,
                         color: AppColors.text,

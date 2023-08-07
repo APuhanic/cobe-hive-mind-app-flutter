@@ -1,17 +1,28 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/constants/endpoints.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/login_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AppHeader extends StatelessWidget {
+class AppHeader extends ConsumerWidget {
   const AppHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(loginProvider).user;
     return Padding(
       padding: const EdgeInsets.only(top: 40, left: 15, right: 15),
       child: Row(
         children: [
-          Image.asset(
-            'images/profile_pic.png',
+          GestureDetector(
+            onTap: () =>
+                Navigator.of(context).pushNamed('/private-profile-screen'),
+            child: CircleAvatar(
+              radius: 30,
+              backgroundImage: NetworkImage(
+                '${Endpoints.baseUrl}${user!.imageUrl}',
+              ),
+            ),
           ),
           const SizedBox(width: 10),
           Text(

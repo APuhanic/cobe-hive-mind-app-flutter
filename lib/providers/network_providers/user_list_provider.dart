@@ -13,8 +13,6 @@ class UserListNotifier extends StateNotifier<List<User>> {
   final UserRepository userRepository;
 
   Future<void> getUsers() async {
-    await userRepository.getUsers().then((value) {
-      state = value;
-    });
+    await userRepository.getUsers().then((value) => state = value);
   }
 }
