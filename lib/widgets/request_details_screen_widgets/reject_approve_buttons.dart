@@ -1,7 +1,7 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:cobe_hive_mobile_app/data/models/leave_request.dart';
 import 'package:cobe_hive_mobile_app/providers/create_request_screen_providers/selected_request_provider.dart';
-import 'package:cobe_hive_mobile_app/providers/leave_request_providers/leave_request_list_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/absence_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,13 +15,21 @@ class RejectApproveButtons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var isApproved = leaveRequest.status == RequestStatus.approved;
+    var isApproved = leaveRequest.isApproved == true;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
-          onPressed:
-              leaveRequest.status == RequestStatus.approved ? null : () {},
+          onPressed: leaveRequest.isApproved == true
+              ? null
+              : () {
+                  //promjena u listi u provideru
+                  ref
+                      .read(absenceListProvider.notifier)
+                      .rejectAbsence(leaveRequest.id!);
+                  ref.read(absenceListProvider.notifier).getAbsences();
+                  Navigator.pop(context);
+                },
           child: Text(
             'Reject',
             style: TextStyle(
@@ -47,16 +55,16 @@ class RejectApproveButtons extends ConsumerWidget {
             ],
           ),
           child: ElevatedButton(
-            onPressed: leaveRequest.status == RequestStatus.approved
+            onPressed: leaveRequest.isApproved == true
                 ? null
                 : () {
                     //promjena u listi u provideru
                     ref
-                        .read(leaveRequestListProvider.notifier)
-                        .approveLeaveRequest(leaveRequest);
+                        .read(absenceListProvider.notifier)
+                        .approveAbsence(leaveRequest.id!);
                     //promjena u odabranom requestu u provideru za ovaj screen
                     ref.read(selectedLeaveRequestProvider.notifier).state =
-                        leaveRequest.copyWith(status: RequestStatus.approved);
+                        leaveRequest.copyWith(isApproved: true);
                   },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(

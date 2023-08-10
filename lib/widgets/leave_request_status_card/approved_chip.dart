@@ -2,9 +2,7 @@ import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ApprovedChip extends StatelessWidget {
-  const ApprovedChip({
-    super.key,
-  });
+  const ApprovedChip({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -18,9 +18,8 @@ class EmailInput extends ConsumerWidget {
             child: Text('Email', style: Theme.of(context).textTheme.bodySmall),
           ),
           TextFormField(
-            onChanged: (value) {
-              ref.read(emailProvider.notifier).state = value;
-            },
+            onChanged: (value) =>
+                ref.read(emailProvider.notifier).state = value,
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.widgetBackground,

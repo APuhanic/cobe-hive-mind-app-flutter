@@ -2,9 +2,7 @@ import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class DatePicker extends StatelessWidget {
-  const DatePicker({
-    super.key,
-  });
+  const DatePicker({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -10,28 +10,33 @@ class AdminScreenRequestList extends ConsumerWidget {
   });
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //final leaveRequestList = ref.watch(leaveRequestListPendingProvider);
-    final absenceList = ref.watch(absenceListProvider);
+    final absenceList = ref.watch(absenceListPendingProvider);
     return absenceList.isEmpty
-        ? const Center(
-            child: Text(
-              'No pending requests',
-              style: TextStyle(
-                color: AppColors.text,
-                fontSize: 20,
-              ),
-            ),
-          )
+        ? const _NoPendingRequests()
         : ListView.separated(
             itemCount: absenceList.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 18),
             separatorBuilder: (context, index) => const SizedBox(width: 18),
-            itemBuilder: (context, index) {
-              return LeaveRequestStatusCard(
-                leaveRequest: absenceList[index],
-              );
-            },
+            itemBuilder: (context, index) =>
+                LeaveRequestStatusCard(leaveRequest: absenceList[index]),
           );
+  }
+}
+
+class _NoPendingRequests extends StatelessWidget {
+  const _NoPendingRequests();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        'No pending requests',
+        style: TextStyle(
+          color: AppColors.text,
+          fontSize: 20,
+        ),
+      ),
+    );
   }
 }

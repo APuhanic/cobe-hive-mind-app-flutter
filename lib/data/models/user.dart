@@ -64,18 +64,15 @@ class User {
     imageUrl = json['imageUrl'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['surname'] = surname;
-    data['role'] = role;
-    data['status'] = status;
-    data['isAdmin'] = isAdmin;
-    data['email'] = email;
-    data['phone'] = phone;
-    data['imageUrl'] = imageUrl;
-
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'surname': surname,
+        'role': role,
+        'status': status,
+        'isAdmin': isAdmin,
+        'email': email,
+        'phone': phone,
+        'imageUrl': imageUrl,
+      };
 }

@@ -1,6 +1,6 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:cobe_hive_mobile_app/data/constants/endpoints.dart';
-import 'package:cobe_hive_mobile_app/providers/network_providers/login_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/logged_in_user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -9,7 +9,7 @@ class AppHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(loginProvider).user;
+    final user = ref.watch(loggedInUserProvider);
     return Padding(
       padding: const EdgeInsets.only(top: 40, left: 15, right: 15),
       child: Row(

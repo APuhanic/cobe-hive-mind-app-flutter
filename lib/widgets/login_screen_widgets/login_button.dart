@@ -8,6 +8,28 @@ class LoginButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(loginProvider, (_, state) {
+      state.when(
+          initial: () {},
+          loading: (dataMaybe) {},
+          success: (response) {
+            if (response.user!.isAdmin ?? false) {
+              //?
+              Navigator.pushNamed(context, '/admin-home-screen');
+            } else {
+              Navigator.pushNamed(context, '/home-screen');
+            }
+          },
+          error: (error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Invalid email or password'),
+                backgroundColor: Colors.red,
+              ),
+            );
+          });
+    });
+
     return Container(
       height: 50,
       width: 300,
@@ -24,24 +46,7 @@ class LoginButton extends ConsumerWidget {
       ),
       child: ElevatedButton(
         onPressed: () {
-          ref.read(loginProvider.notifier).login().then(
-            (value) {
-              if (value.statusCode == 200) {
-                if (value.user!.isAdmin!) {
-                  Navigator.pushNamed(context, '/admin-home-screen');
-                } else {
-                  Navigator.pushNamed(context, '/home');
-                }
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Invalid credentials'),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              }
-            },
-          );
+          ref.read(loginProvider.notifier).login();
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,

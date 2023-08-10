@@ -1,12 +1,12 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:cobe_hive_mobile_app/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/data/models/leave_request.dart';
-import 'package:cobe_hive_mobile_app/providers/leave_request_providers/leave_request_list_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/absence_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RequestApprovalCard extends ConsumerWidget {
-  const RequestApprovalCard({
+class RequestToApproveCard extends ConsumerWidget {
+  const RequestToApproveCard({
     super.key,
     required this.leaveRequest,
   });
@@ -15,8 +15,6 @@ class RequestApprovalCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final date =
-        '${leaveRequest.startDate}.${leaveRequest.startDate} - ${leaveRequest.endDate}.${leaveRequest.endDate}';
     return Container(
         height: 165,
         decoration: BoxDecoration(
@@ -37,7 +35,7 @@ class RequestApprovalCard extends ConsumerWidget {
                 ),
               ),
               Text(
-                '${leaveRequest.endDate} days・ $date ${leaveRequest.startDate}',
+                '${leaveRequest.getDuration()} days・ ${leaveRequest.getStartMonth()} ${leaveRequest.startDate?.day} - ${leaveRequest.getEndMonth()} ${leaveRequest.endDate?.day}, ${leaveRequest.startDate?.year}',
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   fontSize: 15,
@@ -53,7 +51,12 @@ class RequestApprovalCard extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 14.0),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        ref
+                            .read(absenceListProvider.notifier)
+                            .rejectAbsence(leaveRequest.id!);
+                        ref.read(absenceListProvider.notifier).getAbsences();
+                      },
                       child: const Text(
                         'Reject',
                         style: TextStyle(
@@ -66,8 +69,8 @@ class RequestApprovalCard extends ConsumerWidget {
                   FilledButton(
                     onPressed: () {
                       ref
-                          .read(leaveRequestListProvider.notifier)
-                          .approveLeaveRequest(leaveRequest);
+                          .read(absenceListProvider.notifier)
+                          .approveAbsence(leaveRequest.id!);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: const Text(

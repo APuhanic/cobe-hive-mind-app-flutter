@@ -1,6 +1,6 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
-import 'package:cobe_hive_mobile_app/providers/leave_request_providers/leave_request_list_provider.dart';
-import 'package:cobe_hive_mobile_app/widgets/request_board/request_approval_card.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/absence_list_provider.dart';
+import 'package:cobe_hive_mobile_app/widgets/request_board/request_to_approve_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -9,19 +9,17 @@ class RequestsToApproveList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final leaveRequestList = ref.watch(leaveRequestListPendingProvider);
+    final absenceList = ref.watch(absenceListPendingProvider);
 
-    return leaveRequestList.isEmpty
+    return absenceList.isEmpty
         ? const _EmptyRequestListMessage()
         : Expanded(
             child: ListView.separated(
               scrollDirection: Axis.vertical,
               separatorBuilder: (context, index) => const SizedBox(height: 15),
-              itemCount: leaveRequestList.length,
-              itemBuilder: (context, index) {
-                return RequestApprovalCard(
-                    leaveRequest: leaveRequestList[index]);
-              },
+              itemCount: absenceList.length,
+              itemBuilder: (context, index) =>
+                  RequestToApproveCard(leaveRequest: absenceList[index]),
             ),
           );
   }

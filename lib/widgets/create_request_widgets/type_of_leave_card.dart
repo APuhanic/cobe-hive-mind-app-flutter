@@ -46,9 +46,7 @@ class TypeOfLeaveCard extends ConsumerWidget {
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 18.0),
-              child: Text(
-                leaveTypeValue.name.toString().capitalize(),
-              ),
+              child: Text(leaveTypeValue.name.toString().capitalize()),
             ),
           ),
         ),

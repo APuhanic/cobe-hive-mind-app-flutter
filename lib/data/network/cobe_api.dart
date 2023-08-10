@@ -7,29 +7,29 @@ class CobeApi {
 
   CobeApi(this._dioClient);
 
-  Future<Response> login(String email, String password) async {
-    final Response response = await _dioClient.post(
-      Endpoints.login,
-      {
-        'email': email,
-        'password': password,
-      },
-    );
-    return response;
-  }
+  Future<Response> login(String email, String password) async =>
+      await _dioClient.post(
+        Endpoints.login,
+        {
+          'email': email,
+          'password': password,
+        },
+      );
 
-  Future<Response> getUsers() async {
-    final Response response = await _dioClient.get(Endpoints.users);
-    return response;
-  }
+  Future<Response> getUsers() async => await _dioClient.get(Endpoints.users);
 
-  Future<Response> getUserById(String id) async {
-    final Response response = await _dioClient.get('${Endpoints.users}/$id');
-    return response;
-  }
+  Future<Response> getUserById(String id) async =>
+      await _dioClient.get('${Endpoints.users}/$id');
 
-  Future<Response> getAbesences() async {
-    final Response response = await _dioClient.get(Endpoints.absence);
-    return response;
-  }
+  Future<Response> getAbesences() async =>
+      await _dioClient.get(Endpoints.absence);
+
+  Future<Response> approveAbsence(String id) async =>
+      await _dioClient.patch('${Endpoints.absence}/$id/approve', id);
+
+  Future<Response> createAbsence(Map<String, dynamic> absence) async =>
+      await _dioClient.post(Endpoints.absence, absence);
+
+  Future<Response> rejectAbsence(String id) async =>
+      await _dioClient.delete('${Endpoints.absence}/$id/delete');
 }

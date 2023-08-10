@@ -1,6 +1,6 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:cobe_hive_mobile_app/data/models/user.dart';
-import 'package:cobe_hive_mobile_app/providers/network_providers/login_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/logged_in_user_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/background_profile_image.dart';
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/headers/edit_profile_screen_header.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ class EditProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(loginProvider).user;
+    final user = ref.watch(loggedInUserProvider);
 
     return Scaffold(
       body: Column(

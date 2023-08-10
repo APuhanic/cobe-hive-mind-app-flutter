@@ -16,9 +16,7 @@ class EmployeeCardList extends ConsumerWidget {
             scrollDirection: Axis.vertical,
             separatorBuilder: (context, index) => const SizedBox(height: 15),
             itemCount: users.length,
-            itemBuilder: (context, index) {
-              return EmployeeCard(users[index]);
-            },
+            itemBuilder: (context, index) => EmployeeCard(users[index]),
           ),
         );
       },

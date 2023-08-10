@@ -18,8 +18,6 @@ class LeaveRequestStatusCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final date =
-        '${leaveRequest.startDate}.${leaveRequest.startDate} - ${leaveRequest.endDate}.${leaveRequest.endDate}';
     return Container(
       height: 150,
       width: width,
@@ -41,7 +39,7 @@ class LeaveRequestStatusCard extends ConsumerWidget {
               ),
             ),
             Text(
-              '${leaveRequest.endDate} days・ $date ${leaveRequest.startDate}',
+              '${leaveRequest.getDuration()} days・ ${leaveRequest.getStartMonth()} ${leaveRequest.startDate?.day} - ${leaveRequest.getEndMonth()} ${leaveRequest.endDate?.day}, ${leaveRequest.startDate?.year}',
               textAlign: TextAlign.left,
               style: const TextStyle(
                 fontSize: 15,
@@ -52,7 +50,7 @@ class LeaveRequestStatusCard extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                leaveRequest.status == RequestStatus.pending
+                leaveRequest.isApproved == false
                     ? const PendingChip()
                     : const ApprovedChip(),
                 _RequestDetailsButton(leaveRequest: leaveRequest)

@@ -12,11 +12,11 @@ final leaveRequestOptionsProvider = Provider.autoDispose((ref) {
 
   return LeaveRequest(
     viewPermission: viewPermission,
-    startDate: DateTime.now().toString(),
-    endDate: DateTime.now().toString(),
+    startDate: DateTime.now(),
+    endDate: DateTime.now().add(const Duration(days: 1)),
     reason: leaveReason,
     leaveType: leaveType,
-    status: RequestStatus.pending,
+    isApproved: false,
     id: const Uuid().v4(),
   );
 });

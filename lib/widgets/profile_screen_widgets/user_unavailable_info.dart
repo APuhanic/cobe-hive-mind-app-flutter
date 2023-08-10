@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 
 class UserUnavailableInfo extends StatelessWidget {
-  const UserUnavailableInfo({
-    super.key,
-  });
+  const UserUnavailableInfo({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -32,10 +32,8 @@ class TypeOfLeaveList extends ConsumerWidget {
                     height: 20,
                   );
                 },
-                itemBuilder: (itemBuilderContext, index) {
-                  final leaveTypeValue = leaveTypeValues[index];
-                  return TypeOfLeaveCard(leaveTypeValue: leaveTypeValue);
-                },
+                itemBuilder: (itemBuilderContext, index) =>
+                    TypeOfLeaveCard(leaveTypeValue: leaveTypeValues[index]),
               ),
             ),
           ],

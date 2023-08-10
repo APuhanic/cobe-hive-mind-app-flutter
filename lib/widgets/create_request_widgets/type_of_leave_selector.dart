@@ -22,9 +22,7 @@ class TypeOfLeaveSelector extends ConsumerWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         context: context,
-        builder: (context) {
-          return const TypeOfLeaveList();
-        },
+        builder: (context) => const TypeOfLeaveList(),
       ),
       child: Container(
         height: 50,

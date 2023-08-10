@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 enum ViewPermission { everyone, admin }
 
 enum LeaveType { parental, sick, vacation, other }
@@ -7,11 +9,11 @@ enum RequestStatus { pending, approved, rejected }
 class LeaveRequest {
   String? id;
   ViewPermission? viewPermission;
-  String? startDate;
-  String? endDate;
+  DateTime? startDate;
+  DateTime? endDate;
   String? reason;
   LeaveType? leaveType;
-  RequestStatus? status;
+  bool? isApproved;
 
   LeaveRequest({
     required this.id,
@@ -20,17 +22,28 @@ class LeaveRequest {
     required this.endDate,
     required this.reason,
     required this.leaveType,
-    required this.status,
+    required this.isApproved,
   });
 
   LeaveRequest.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     viewPermission = _convertToViewPermission(json['viewPermission']);
-    startDate = json['startDate'];
-    endDate = json['endDate'];
+    startDate = DateFormat("'yyyy-MM-ddTHH:mm:ss.SSS").parse(json['start']);
+    endDate = DateFormat("'yyyy-MM-ddTHH:mm:ss.SSS").parse(json['end']);
     reason = json['reason'];
-    leaveType = _convertToLeaveType(json['leaveType']);
-    status = _convertToRequestStatus(json['status']);
+    leaveType = _convertToLeaveType(json['type']);
+    isApproved = json['approved'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['viewPermission'] = viewPermission.toString().split('.').last;
+    data['start'] = DateFormat('yyyy-MM-dd').format(startDate!);
+    data['end'] = DateFormat('yyyy-MM-dd').format(endDate!);
+    data['reason'] = reason;
+    data['type'] = leaveType.toString().split('.').last;
+    data['approved'] = isApproved;
+    return data;
   }
 
   LeaveType _convertToLeaveType(leaveType) {
@@ -45,19 +58,6 @@ class LeaveRequest {
         return LeaveType.other;
       default:
         return LeaveType.other;
-    }
-  }
-
-  RequestStatus _convertToRequestStatus(status) {
-    switch (status) {
-      case 'pending':
-        return RequestStatus.pending;
-      case 'approved':
-        return RequestStatus.approved;
-      case 'rejected':
-        return RequestStatus.rejected;
-      default:
-        return RequestStatus.pending;
     }
   }
 
@@ -76,11 +76,11 @@ class LeaveRequest {
     String? id,
     String? user,
     ViewPermission? viewPermission,
-    String? startDate,
-    String? endDate,
+    DateTime? startDate,
+    DateTime? endDate,
     String? reason,
     LeaveType? leaveType,
-    RequestStatus? status,
+    bool? isApproved,
   }) =>
       LeaveRequest(
         id: id ?? this.id,
@@ -88,7 +88,13 @@ class LeaveRequest {
         leaveType: leaveType ?? this.leaveType,
         reason: reason ?? this.reason,
         startDate: startDate ?? this.startDate,
-        status: status ?? this.status,
+        isApproved: isApproved ?? this.isApproved,
         viewPermission: viewPermission ?? this.viewPermission,
       );
+
+  String getStartMonth() => DateFormat('MMM').format(startDate!);
+
+  String getEndMonth() => DateFormat('MMM').format(endDate!);
+
+  int getDuration() => endDate!.difference(startDate!).inDays;
 }

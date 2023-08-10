@@ -2,9 +2,7 @@ import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class OnlineChip extends StatelessWidget {
-  const OnlineChip({
-    super.key,
-  });
+  const OnlineChip({super.key});
 
   @override
   Widget build(BuildContext context) {
