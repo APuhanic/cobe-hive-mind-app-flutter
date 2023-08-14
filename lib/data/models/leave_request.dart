@@ -8,6 +8,7 @@ enum RequestStatus { pending, approved, rejected }
 
 class LeaveRequest {
   String? id;
+  String? requestingUserId;
   ViewPermission? viewPermission;
   DateTime? startDate;
   DateTime? endDate;
@@ -17,6 +18,7 @@ class LeaveRequest {
 
   LeaveRequest({
     required this.id,
+    required this.requestingUserId,
     required this.viewPermission,
     required this.startDate,
     required this.endDate,
@@ -27,6 +29,7 @@ class LeaveRequest {
 
   LeaveRequest.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    requestingUserId = json['requestingUserId'];
     viewPermission = _convertToViewPermission(json['viewPermission']);
     startDate = DateFormat("'yyyy-MM-ddTHH:mm:ss.SSS").parse(json['start']);
     endDate = DateFormat("'yyyy-MM-ddTHH:mm:ss.SSS").parse(json['end']);
@@ -37,6 +40,8 @@ class LeaveRequest {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['requestingUserId'] = requestingUserId;
     data['viewPermission'] = viewPermission.toString().split('.').last;
     data['start'] = DateFormat('yyyy-MM-dd').format(startDate!);
     data['end'] = DateFormat('yyyy-MM-dd').format(endDate!);
@@ -74,7 +79,7 @@ class LeaveRequest {
 
   LeaveRequest copyWith({
     String? id,
-    String? user,
+    String? requestingUserId,
     ViewPermission? viewPermission,
     DateTime? startDate,
     DateTime? endDate,
@@ -84,6 +89,7 @@ class LeaveRequest {
   }) =>
       LeaveRequest(
         id: id ?? this.id,
+        requestingUserId: requestingUserId ?? this.requestingUserId,
         endDate: endDate ?? this.endDate,
         leaveType: leaveType ?? this.leaveType,
         reason: reason ?? this.reason,

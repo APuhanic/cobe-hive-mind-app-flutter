@@ -1,7 +1,6 @@
 import 'package:cobe_hive_mobile_app/data/models/leave_request.dart';
 import 'package:cobe_hive_mobile_app/data/network/cobe_api.dart';
 import 'package:cobe_hive_mobile_app/providers/network_providers/cobe_api_provider.dart';
-import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final absenceRepositoryProvider = Provider<AbsenceRepository>(
@@ -12,41 +11,20 @@ class AbsenceRepository {
   AbsenceRepository(this._cobeApi);
 
   Future<List<LeaveRequest>> getAbsences() async {
-    try {
-      final response = await _cobeApi.getAbesences();
-      final absenceList =
-          (response.data as List).map((e) => LeaveRequest.fromJson(e)).toList();
-      return absenceList;
-    } on DioException catch (e) {
-      final errorMessage = e.toString();
-      throw errorMessage;
-    }
+    final response = await _cobeApi.getAbesences();
+    final absenceList =
+        (response.data as List).map((e) => LeaveRequest.fromJson(e)).toList();
+    return absenceList;
   }
 
-  Future<void> approveAbsence(String id) async {
-    try {
+  Future<void> approveAbsence(String id) async =>
       await _cobeApi.approveAbsence(id);
-    } on DioException catch (e) {
-      final errorMessage = e.toString();
-      throw errorMessage;
-    }
-  }
 
-  Future<void> rejectAbsence(String id) async {
-    try {
+  Future<void> rejectAbsence(String id) async =>
       await _cobeApi.rejectAbsence(id);
-    } on DioException catch (e) {
-      final errorMessage = e.toString();
-      throw errorMessage;
-    }
-  }
 
-  Future<void> addAbsence(LeaveRequest leaveRequest) async {
-    try {
+  Future<void> addAbsence(LeaveRequest leaveRequest) async =>
       await _cobeApi.createAbsence(leaveRequest.toJson());
-    } on DioException catch (e) {
-      final errorMessage = e.toString();
-      throw errorMessage;
-    }
-  }
+
+  Future<void> resetAbsences() async => await _cobeApi.resetAbsences();
 }

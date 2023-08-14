@@ -21,7 +21,7 @@ mixin _$ApiState<T> {
     required TResult Function() initial,
     required TResult Function(T? dataMaybe) loading,
     required TResult Function(T data) success,
-    required TResult Function(T error) error,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$ApiState<T> {
     TResult? Function()? initial,
     TResult? Function(T? dataMaybe)? loading,
     TResult? Function(T data)? success,
-    TResult? Function(T error)? error,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$ApiState<T> {
     TResult Function()? initial,
     TResult Function(T? dataMaybe)? loading,
     TResult Function(T data)? success,
-    TResult Function(T error)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$_Initial<T> implements _Initial<T> {
     required TResult Function() initial,
     required TResult Function(T? dataMaybe) loading,
     required TResult Function(T data) success,
-    required TResult Function(T error) error,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$_Initial<T> implements _Initial<T> {
     TResult? Function()? initial,
     TResult? Function(T? dataMaybe)? loading,
     TResult? Function(T data)? success,
-    TResult? Function(T error)? error,
+    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$_Initial<T> implements _Initial<T> {
     TResult Function()? initial,
     TResult Function(T? dataMaybe)? loading,
     TResult Function(T data)? success,
-    TResult Function(T error)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -268,7 +268,7 @@ class _$_Loading<T> implements _Loading<T> {
     required TResult Function() initial,
     required TResult Function(T? dataMaybe) loading,
     required TResult Function(T data) success,
-    required TResult Function(T error) error,
+    required TResult Function(String error) error,
   }) {
     return loading(dataMaybe);
   }
@@ -279,7 +279,7 @@ class _$_Loading<T> implements _Loading<T> {
     TResult? Function()? initial,
     TResult? Function(T? dataMaybe)? loading,
     TResult? Function(T data)? success,
-    TResult? Function(T error)? error,
+    TResult? Function(String error)? error,
   }) {
     return loading?.call(dataMaybe);
   }
@@ -290,7 +290,7 @@ class _$_Loading<T> implements _Loading<T> {
     TResult Function()? initial,
     TResult Function(T? dataMaybe)? loading,
     TResult Function(T data)? success,
-    TResult Function(T error)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -414,7 +414,7 @@ class _$_Success<T> implements _Success<T> {
     required TResult Function() initial,
     required TResult Function(T? dataMaybe) loading,
     required TResult Function(T data) success,
-    required TResult Function(T error) error,
+    required TResult Function(String error) error,
   }) {
     return success(data);
   }
@@ -425,7 +425,7 @@ class _$_Success<T> implements _Success<T> {
     TResult? Function()? initial,
     TResult? Function(T? dataMaybe)? loading,
     TResult? Function(T data)? success,
-    TResult? Function(T error)? error,
+    TResult? Function(String error)? error,
   }) {
     return success?.call(data);
   }
@@ -436,7 +436,7 @@ class _$_Success<T> implements _Success<T> {
     TResult Function()? initial,
     TResult Function(T? dataMaybe)? loading,
     TResult Function(T data)? success,
-    TResult Function(T error)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -498,7 +498,7 @@ abstract class _$$_ErrorCopyWith<T, $Res> {
           _$_Error<T> value, $Res Function(_$_Error<T>) then) =
       __$$_ErrorCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({T error});
+  $Res call({String error});
 }
 
 /// @nodoc
@@ -511,13 +511,13 @@ class __$$_ErrorCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$_Error<T>(
-      freezed == error
+      null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as T,
+              as String,
     ));
   }
 }
@@ -528,7 +528,7 @@ class _$_Error<T> implements _Error<T> {
   const _$_Error(this.error);
 
   @override
-  final T error;
+  final String error;
 
   @override
   String toString() {
@@ -540,12 +540,11 @@ class _$_Error<T> implements _Error<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error<T> &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
@@ -559,7 +558,7 @@ class _$_Error<T> implements _Error<T> {
     required TResult Function() initial,
     required TResult Function(T? dataMaybe) loading,
     required TResult Function(T data) success,
-    required TResult Function(T error) error,
+    required TResult Function(String error) error,
   }) {
     return error(this.error);
   }
@@ -570,7 +569,7 @@ class _$_Error<T> implements _Error<T> {
     TResult? Function()? initial,
     TResult? Function(T? dataMaybe)? loading,
     TResult? Function(T data)? success,
-    TResult? Function(T error)? error,
+    TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -581,7 +580,7 @@ class _$_Error<T> implements _Error<T> {
     TResult Function()? initial,
     TResult Function(T? dataMaybe)? loading,
     TResult Function(T data)? success,
-    TResult Function(T error)? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -629,9 +628,9 @@ class _$_Error<T> implements _Error<T> {
 }
 
 abstract class _Error<T> implements ApiState<T> {
-  const factory _Error(final T error) = _$_Error<T>;
+  const factory _Error(final String error) = _$_Error<T>;
 
-  T get error;
+  String get error;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<T, _$_Error<T>> get copyWith =>
       throw _privateConstructorUsedError;

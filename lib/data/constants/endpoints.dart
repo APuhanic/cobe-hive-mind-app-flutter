@@ -10,4 +10,6 @@ class Endpoints {
   static const String users = '/users';
 
   static const String absence = '/absence';
+
+  static const String reset = '/reset';
 }

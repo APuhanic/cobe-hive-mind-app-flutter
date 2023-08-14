@@ -9,25 +9,29 @@ class LoginButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(loginProvider, (_, state) {
-      state.when(
-          initial: () {},
-          loading: (dataMaybe) {},
-          success: (response) {
-            if (response.user!.isAdmin ?? false) {
-              //?
-              Navigator.pushNamed(context, '/admin-home-screen');
-            } else {
-              Navigator.pushNamed(context, '/home-screen');
-            }
-          },
-          error: (error) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Invalid email or password'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          });
+      state.maybeWhen(
+        error: (message) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: Colors.red,
+            ),
+          );
+        },
+        orElse: () {},
+      );
+    });
+    ref.listen(loggedInUserNotifierProvider, (_, state) {
+      state.maybeWhen(
+        success: (user) {
+          if (user.isAdmin!) {
+            Navigator.pushNamed(context, '/admin-home-screen');
+          } else {
+            Navigator.pushNamed(context, '/home');
+          }
+        },
+        orElse: () {},
+      );
     });
 
     return Container(
@@ -51,9 +55,12 @@ class LoginButton extends ConsumerWidget {
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent),
-        child: const Text(
-          'Login',
-          style: TextStyle(
+        child: Text(
+          ref.watch(loginProvider).maybeWhen(
+                loading: (_) => 'Logging in...',
+                orElse: () => 'Login',
+              ),
+          style: const TextStyle(
               fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
         ),
       ),

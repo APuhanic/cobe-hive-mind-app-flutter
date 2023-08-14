@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final selectedLeaveRequestProvider = StateProvider<LeaveRequest>(
   (ref) => LeaveRequest(
     id: '',
+    requestingUserId: '',
     viewPermission: ViewPermission.everyone,
     startDate: DateTime.now(),
     endDate: DateTime.now(),

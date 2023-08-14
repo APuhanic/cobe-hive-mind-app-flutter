@@ -16,8 +16,12 @@ final statusFilterMap = {
 };
 
 final filteredUserListProvider = FutureProvider<List<User>>((ref) async {
+  final userList = ref.watch(userListProvider).maybeMap(
+        orElse: () => <User>[],
+        loading: (_) => <User>[],
+        success: (userList) => userList.data,
+      );
   final searchQuery = ref.watch(userSearchProvider);
-  final userList = ref.watch(userListProvider);
   final userFilter = ref.watch(userFilterProvider);
 
   List<User> filteredUsers = userList.where(

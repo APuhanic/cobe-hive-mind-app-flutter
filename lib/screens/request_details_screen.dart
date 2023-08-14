@@ -1,5 +1,7 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/constants/endpoints.dart';
 import 'package:cobe_hive_mobile_app/providers/create_request_screen_providers/selected_request_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/user_list_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/request_board/request_details_status_card.dart';
 import 'package:cobe_hive_mobile_app/widgets/request_details_screen_widgets/leave_date.dart';
 import 'package:cobe_hive_mobile_app/widgets/request_details_screen_widgets/leave_reason.dart';
@@ -24,7 +26,7 @@ class RequestDetailsScreen extends ConsumerWidget {
               padding: EdgeInsets.only(top: 20, bottom: 40),
               child: RequestDetailsHeader(),
             ),
-            const UserDetails(),
+            UserDetails(selectedLeaveRequest.requestingUserId),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 20.0),
               child: RequestDetailsStatusCard(),
@@ -41,33 +43,45 @@ class RequestDetailsScreen extends ConsumerWidget {
   }
 }
 
-class UserDetails extends StatelessWidget {
-  const UserDetails({
+class UserDetails extends ConsumerWidget {
+  const UserDetails(
+    this.userId, {
     super.key,
   });
 
+  final String? userId;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userListProvider).maybeWhen(
+          orElse: () {},
+          success: (users) => users.firstWhere((user) => user.id == userId),
+        );
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          'images/ronalds.png',
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage(
+              '${Endpoints.baseUrl}${user!.imageUrl}',
+            ),
+          ),
         ),
         const SizedBox(width: 15),
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Ronald Richards',
-              style: TextStyle(
+              '${user.name} ${user.surname}',
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
-              'Software Engineer',
-              style: TextStyle(
+              '${user.role}',
+              style: const TextStyle(
                 fontSize: 17,
                 color: AppColors.accent,
               ),

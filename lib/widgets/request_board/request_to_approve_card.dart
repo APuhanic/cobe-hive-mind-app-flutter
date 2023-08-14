@@ -1,6 +1,7 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:cobe_hive_mobile_app/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/data/models/leave_request.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/absence_controller_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/network_providers/absence_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -53,8 +54,8 @@ class RequestToApproveCard extends ConsumerWidget {
                     child: TextButton(
                       onPressed: () {
                         ref
-                            .read(absenceListProvider.notifier)
-                            .rejectAbsence(leaveRequest.id!);
+                            .read(absenceControllerProvider.notifier)
+                            .rejectAbsence(leaveRequest);
                         ref.read(absenceListProvider.notifier).getAbsences();
                       },
                       child: const Text(
@@ -69,8 +70,8 @@ class RequestToApproveCard extends ConsumerWidget {
                   FilledButton(
                     onPressed: () {
                       ref
-                          .read(absenceListProvider.notifier)
-                          .approveAbsence(leaveRequest.id!);
+                          .read(absenceControllerProvider.notifier)
+                          .approveAbsence(leaveRequest);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: const Text(

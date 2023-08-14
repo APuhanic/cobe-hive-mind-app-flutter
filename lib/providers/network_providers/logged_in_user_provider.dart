@@ -3,7 +3,7 @@ import 'package:cobe_hive_mobile_app/providers/network_providers/login_provider.
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final loggedInUserProvider =
-    Provider<User?>((ref) => ref.watch(loginProvider).maybeWhen(
-          success: (loginResponse) => loginResponse.user,
+    Provider<User?>((ref) => ref.watch(loggedInUserNotifierProvider).maybeWhen(
+          success: (user) => user,
           orElse: () => null,
         ));

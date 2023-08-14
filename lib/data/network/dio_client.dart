@@ -6,7 +6,7 @@ class DioClient {
   final Dio _dio;
 
   static const _token =
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg4MTMwNjk3fQ.BL5VySvQpG4X8nxGtBLymJzvCMpWhg8oxiWrJbLGEWM';
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWNkNmI3OWQtODU4Ny00MTk0LWE1ZDgtYWEzNDQ3ZmExYjU1Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjkxNzU4MDI2LCJleHAiOjE2OTE3NTg5MjYsInN1YiI6ImFjY2Vzcy10b2tlbiIsImlzcyI6ImNvYmUtaGl2ZSJ9.-Mf0NDCQ9Sd8wngdOLEWKXMRGM-2C9JGKPw3pz4D9GI';
 
   DioClient(this._dio) {
     _dio

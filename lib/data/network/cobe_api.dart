@@ -32,4 +32,7 @@ class CobeApi {
 
   Future<Response> rejectAbsence(String id) async =>
       await _dioClient.delete('${Endpoints.absence}/$id/delete');
+
+  Future<Response> resetAbsences() async =>
+      await _dioClient.delete(Endpoints.reset);
 }

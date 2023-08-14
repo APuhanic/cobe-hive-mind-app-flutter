@@ -3,6 +3,7 @@ import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/background_p
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/headers/private_profile_screen_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/number_of_sick_leave_days.dart';
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/number_of_vacation_days.dart';
+import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/private_absence_list.dart';
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/profile_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
@@ -14,7 +15,6 @@ class PrivateProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(loggedInUserProvider);
-
     return Scaffold(
       body: Column(
         children: [
@@ -41,7 +41,9 @@ class PrivateProfileScreen extends ConsumerWidget {
               SizedBox(width: 15),
               NumberOfSickLeaveDays()
             ],
-          )
+          ),
+          const SizedBox(height: 25),
+          const PrivateAbsenceList()
         ],
       ),
       floatingActionButton: const ExpandableFAB(),

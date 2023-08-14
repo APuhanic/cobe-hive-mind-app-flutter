@@ -1,5 +1,6 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:cobe_hive_mobile_app/providers/leave_request_providers/leave_request_options_provider.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/absence_controller_provider.dart';
 import 'package:cobe_hive_mobile_app/providers/network_providers/absence_list_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/create_request_widgets/request_created_alert_dialog.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +31,12 @@ class CreateRequestButtons extends ConsumerWidget {
               showDialog(
                 context: context,
                 barrierDismissible: false,
-                builder: (BuildContext context) {
-                  return const RequestCreatedAlertDialog();
-                },
+                builder: (BuildContext context) =>
+                    const RequestCreatedAlertDialog(),
               );
-              ref.read(absenceListProvider.notifier).addAbsence(leaveRequest);
+              ref
+                  .read(absenceControllerProvider.notifier)
+                  .addAbsence(leaveRequest);
               ref.read(absenceListProvider.notifier).getAbsences();
             },
             style: ElevatedButton.styleFrom(

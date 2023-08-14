@@ -2,6 +2,7 @@ import 'package:cobe_hive_mobile_app/providers/network_providers/selected_user_p
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/background_profile_image.dart';
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/profile_info_card.dart';
 import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/headers/public_profile_screen_header.dart';
+import 'package:cobe_hive_mobile_app/widgets/profile_screen_widgets/public_absence_list.dart';
 import 'package:flutter/material.dart';
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -31,6 +32,8 @@ class PublicProfileScreen extends ConsumerWidget {
               )
             ],
           ),
+          const SizedBox(height: 25),
+          const PublicAbsenceList(),
         ],
       ),
       floatingActionButton: const ExpandableFAB(),
