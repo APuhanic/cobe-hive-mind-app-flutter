@@ -5,22 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AdminScreenRequestList extends ConsumerWidget {
-  const AdminScreenRequestList({
-    super.key,
-  });
+  const AdminScreenRequestList({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final absenceList = ref.watch(absenceListPendingProvider);
-    return absenceList.isEmpty
-        ? const _NoPendingRequests()
-        : ListView.separated(
-            itemCount: absenceList.length,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 18),
-            separatorBuilder: (context, index) => const SizedBox(width: 18),
-            itemBuilder: (context, index) =>
-                LeaveRequestStatusCard(leaveRequest: absenceList[index]),
-          );
+    return ref.watch(absenceListProvider).maybeWhen(
+          orElse: () => const Center(child: CircularProgressIndicator()),
+          loading: (dataMaybe) =>
+              const Center(child: CircularProgressIndicator()),
+          success: (data) => absenceList.isEmpty
+              ? const _NoPendingRequests()
+              : ListView.separated(
+                  itemCount: absenceList.length,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 18),
+                  itemBuilder: (context, index) =>
+                      LeaveRequestStatusCard(leaveRequest: absenceList[index]),
+                ),
+        );
   }
 }
 

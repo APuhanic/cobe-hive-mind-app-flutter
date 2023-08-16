@@ -8,25 +8,22 @@ class EmployeeCardList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filteredUsers = ref.watch(filteredUserListProvider);
-    return filteredUsers.when(
-      data: (users) {
-        return Expanded(
-          child: ListView.separated(
-            scrollDirection: Axis.vertical,
-            separatorBuilder: (context, index) => const SizedBox(height: 15),
-            itemCount: users.length,
-            itemBuilder: (context, index) => EmployeeCard(users[index]),
+    return ref.watch(filteredUserListProvider).when(
+          data: (users) => Expanded(
+            child: ListView.separated(
+              scrollDirection: Axis.vertical,
+              separatorBuilder: (context, index) => const SizedBox(height: 15),
+              itemCount: users.length,
+              itemBuilder: (context, index) => EmployeeCard(users[index]),
+            ),
+          ),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, stackTrace) => Center(
+            child: Text(
+              'Error: $error',
+              style: const TextStyle(color: Colors.red),
+            ),
           ),
         );
-      },
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stackTrace) => Center(
-        child: Text(
-          'Error: $error',
-          style: const TextStyle(color: Colors.red),
-        ),
-      ),
-    );
   }
 }

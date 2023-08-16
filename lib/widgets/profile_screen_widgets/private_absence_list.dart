@@ -10,7 +10,7 @@ class PrivateAbsenceList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userAbsenceList = ref
-        .watch(absenceListByUserProvider(ref.watch(loggedInUserProvider)!.id));
+        .watch(absenceListByUserProvider(ref.read(loggedInUserProvider)!.id));
 
     return Expanded(
       child: Padding(

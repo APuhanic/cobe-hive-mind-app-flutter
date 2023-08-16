@@ -5,7 +5,7 @@ class Endpoints {
 
   static const String login = '/login';
 
-  static const String authorization = '/token/refresh';
+  static const String refresh = '/token/refresh';
 
   static const String users = '/users';
 

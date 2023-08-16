@@ -67,16 +67,16 @@ final absenceListApprovedProvider =
               .toList(),
         ));
 
-final absenceListByUserProvider =
-    Provider.family((ref, userId) => ref.watch(absenceListProvider).maybeWhen(
+final absenceListByUserProvider = Provider.family(
+    (ref, String? userId) => ref.watch(absenceListProvider).maybeWhen(
           orElse: () => [],
           success: (leaveRequestList) => leaveRequestList
               .where((leaveRequest) => leaveRequest.requestingUserId == userId)
               .toList(),
         ));
 
-final publicAbsenceListProvider =
-    Provider.family((ref, userId) => ref.watch(absenceListProvider).maybeWhen(
+final publicAbsenceListProvider = Provider.family(
+    (ref, String? userId) => ref.watch(absenceListProvider).maybeWhen(
           orElse: () => [],
           success: (leaveRequestList) => leaveRequestList
               .where((leaveRequest) =>

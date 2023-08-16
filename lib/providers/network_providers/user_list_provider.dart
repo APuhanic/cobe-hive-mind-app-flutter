@@ -25,3 +25,9 @@ class UserListNotifier extends StateNotifier<ApiState<List<User>>> {
     }
   }
 }
+
+final userProvider = Provider.family<User?, String>((ref, id) => ref
+    .watch(userListProvider)
+    .maybeWhen(
+        orElse: () => null,
+        success: (users) => users.firstWhere((user) => user.id == id)));

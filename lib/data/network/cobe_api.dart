@@ -16,6 +16,15 @@ class CobeApi {
         },
       );
 
+  Future<Response> refreshToken(String refreshToken, String userId) async =>
+      await _dioClient.post(
+        Endpoints.refresh,
+        {
+          'refresh': refreshToken,
+          'user_id': userId,
+        },
+      );
+
   Future<Response> getUsers() async => await _dioClient.get(Endpoints.users);
 
   Future<Response> getUserById(String id) async =>

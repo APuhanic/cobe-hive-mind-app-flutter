@@ -11,6 +11,7 @@ class AbsenceRepository {
   AbsenceRepository(this._cobeApi);
 
   Future<List<LeaveRequest>> getAbsences() async {
+    await Future.delayed(const Duration(seconds: 2));
     final response = await _cobeApi.getAbesences();
     final absenceList =
         (response.data as List).map((e) => LeaveRequest.fromJson(e)).toList();
