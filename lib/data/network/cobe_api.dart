@@ -1,29 +1,16 @@
 import 'package:cobe_hive_mobile_app/data/network/dio_client.dart';
 import 'package:cobe_hive_mobile_app/data/constants/endpoints.dart';
+import 'package:cobe_hive_mobile_app/providers/network_providers/dio_client_provider.dart';
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final cobeApiProvider =
+    Provider<CobeApi>((ref) => CobeApi(ref.watch(dioClientProvider)));
 
 class CobeApi {
   final DioClient _dioClient;
 
   CobeApi(this._dioClient);
-
-  Future<Response> login(String email, String password) async =>
-      await _dioClient.post(
-        Endpoints.login,
-        {
-          'email': email,
-          'password': password,
-        },
-      );
-
-  Future<Response> refreshToken(String refreshToken, String userId) async =>
-      await _dioClient.post(
-        Endpoints.refresh,
-        {
-          'refresh': refreshToken,
-          'user_id': userId,
-        },
-      );
 
   Future<Response> getUsers() async => await _dioClient.get(Endpoints.users);
 

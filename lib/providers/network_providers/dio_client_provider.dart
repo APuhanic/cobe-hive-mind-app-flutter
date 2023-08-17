@@ -3,3 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final dioClientProvider = Provider<DioClient>((ref) => DioClient(Dio(), ref));
+
+final dioLoginClientProvider =
+    Provider<DioLoginClient>((ref) => DioLoginClient(Dio()));
