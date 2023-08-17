@@ -11,6 +11,7 @@ class AbsenceRepository {
   AbsenceRepository(this._cobeApi);
 
   Future<List<LeaveRequest>> getAbsences() async {
+    //TODO: implenet try catch for parsing
     await Future.delayed(const Duration(seconds: 2));
     final response = await _cobeApi.getAbesences();
     final absenceList =

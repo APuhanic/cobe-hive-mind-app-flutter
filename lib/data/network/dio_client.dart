@@ -1,17 +1,18 @@
 import 'package:cobe_hive_mobile_app/data/constants/endpoints.dart';
 import 'package:cobe_hive_mobile_app/data/network/interceptors/token_interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   final Dio _dio;
-
-  DioClient(this._dio) {
+  final Ref ref;
+  DioClient(this._dio, this.ref) {
     _dio
       ..options.baseUrl = Endpoints.baseUrl
       ..options.responseType = ResponseType.json
       ..interceptors.add(PrettyDioLogger())
-      ..interceptors.add(TokenInterceptor());
+      ..interceptors.add(TokenInterceptor(ref));
   }
 
   Future<Response> get(String path) async => _dio.get(path);
