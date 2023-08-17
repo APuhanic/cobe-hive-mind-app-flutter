@@ -1,15 +1,21 @@
-import 'package:cobe_hive_mobile_app/data/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
 import 'package:cobe_hive_mobile_app/screens/admin_home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/create_request_screen.dart';
+import 'package:cobe_hive_mobile_app/screens/edit_profile_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/login_screen.dart';
+import 'package:cobe_hive_mobile_app/screens/private_profile_screen.dart';
+import 'package:cobe_hive_mobile_app/screens/public_profile_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/request_board_approved_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/request_board_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/request_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:cobe_hive_mobile_app/data/services/locator.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setup();
   runApp(const ProviderScope(
     child: CobeHiveApp(),
   ));
@@ -21,7 +27,6 @@ class CobeHiveApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           scaffoldBackgroundColor: AppColors.background,
@@ -66,6 +71,9 @@ class CobeHiveApp extends StatelessWidget {
         '/request-board-approved': (context) =>
             const RequestBoardApprovedScreen(),
         '/request-details': (context) => const RequestDetailsScreen(),
+        '/private-profile-screen': (context) => const PrivateProfileScreen(),
+        '/public-profile-screen': (context) => const PublicProfileScreen(),
+        '/edit-profile-screen': (context) => const EditProfileScreen(),
       },
     );
   }

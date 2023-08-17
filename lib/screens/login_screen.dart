@@ -1,8 +1,8 @@
-import 'package:cobe_hive_mobile_app/data/app_colors.dart';
-import 'package:cobe_hive_mobile_app/providers/login_provider.dart';
-import 'package:cobe_hive_mobile_app/providers/user_api_provider.dart';
+import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
+import 'package:cobe_hive_mobile_app/widgets/login_screen_widgets/email_input.dart';
+import 'package:cobe_hive_mobile_app/widgets/login_screen_widgets/login_button.dart';
+import 'package:cobe_hive_mobile_app/widgets/login_screen_widgets/password_input.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,23 +22,16 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               const SizedBox(height: 90),
-              Image.asset(
-                'images/Logo_red.png',
-              ),
+              Image.asset('images/Logo_red.png'),
               Text(
                 'Hive',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(height: 40),
-
-              const _EmailInput(),
-
-              const _PasswordInput(),
+              const EmailInput(),
+              const PasswordInput(),
               const SizedBox(height: 30),
-
-              _LoginButton(),
-
-              // Forgot password button
+              const LoginButton(),
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {},
@@ -53,127 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _LoginButton extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final email = ref.watch(emailProvider);
-    final password = ref.watch(passwordProvider);
-    return Container(
-      height: 50,
-      width: 300,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        gradient: AppColors.orangeGradient,
-        boxShadow: const [
-          BoxShadow(
-            color: AppColors.orangeShadow,
-            offset: Offset(0, 4),
-            blurRadius: 28,
-          ),
-        ],
-      ),
-      child: ElevatedButton(
-        onPressed: () async {
-          final response =
-              await ref.read(loginProvider.notifier).login(email, password);
-          if (response.statusCode == 200) {
-            Navigator.pushNamed(context, '/home');
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Invalid credentials'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        },
-        style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent,
-            shadowColor: Colors.transparent),
-        child: const Text(
-          'Login',
-          style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
-        ),
-      ),
-    );
-  }
-}
-
-class _PasswordInput extends ConsumerWidget {
-  const _PasswordInput();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isVisible = ref.watch(isVisibleProvider);
-    return SizedBox(
-      width: 300,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child:
-                Text('Password', style: Theme.of(context).textTheme.bodySmall),
-          ),
-          TextField(
-            onChanged: (value) =>
-                ref.read(passwordProvider.notifier).state = value,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColors.widgetBackground,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColors.accent),
-              ),
-              suffixIcon: IconButton(
-                onPressed: () =>
-                    ref.read(isVisibleProvider.notifier).state = !isVisible,
-                icon: const Icon(Icons.visibility, color: AppColors.accent),
-              ),
-            ),
-            obscureText: isVisible,
-            enableSuggestions: false,
-            autocorrect: false,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _EmailInput extends ConsumerWidget {
-  const _EmailInput();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox(
-      width: 300,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text('Email', style: Theme.of(context).textTheme.bodySmall),
-          ),
-          TextFormField(
-            onChanged: (value) =>
-                ref.read(emailProvider.notifier).state = value,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColors.widgetBackground,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColors.accent),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

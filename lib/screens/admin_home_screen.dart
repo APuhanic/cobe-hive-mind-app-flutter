@@ -1,9 +1,9 @@
-import 'package:cobe_hive_mobile_app/data/app_colors.dart';
-import 'package:cobe_hive_mobile_app/widgets/app_header.dart';
-import 'package:cobe_hive_mobile_app/widgets/chip_list.dart';
-import 'package:cobe_hive_mobile_app/widgets/employee_card_list.dart';
-import 'package:cobe_hive_mobile_app/widgets/admin_screen_request_list.dart';
-import 'package:cobe_hive_mobile_app/widgets/search_bar.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/app_header.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/chip_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/employee_card_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/admin_screen_request_list.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/manage_requests_bar.dart';
+import 'package:cobe_hive_mobile_app/widgets/admin_and_home_widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cobe_hive_mobile_app/widgets/expandable_fab.dart';
@@ -22,7 +22,7 @@ class AdminHomeScreen extends ConsumerWidget {
             AppHeader(),
             Padding(
               padding: EdgeInsets.only(left: 18, right: 18, top: 25),
-              child: _ManageRequestsBar(),
+              child: ManageRequestsBar(),
             ),
             SizedBox(
               height: 150,
@@ -44,35 +44,6 @@ class AdminHomeScreen extends ConsumerWidget {
         ),
         floatingActionButton: ExpandableFAB(),
       ),
-    );
-  }
-}
-
-class _ManageRequestsBar extends StatelessWidget {
-  const _ManageRequestsBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text(
-          'Manage Requests',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        TextButton(
-            onPressed: () => Navigator.pushNamed(context, '/request-board'),
-            child: const Text(
-              'See all',
-              style: TextStyle(
-                fontSize: 16,
-                color: AppColors.textOrange,
-              ),
-            ))
-      ],
     );
   }
 }

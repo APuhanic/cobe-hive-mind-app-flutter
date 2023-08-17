@@ -1,75 +1,35 @@
-import 'package:cobe_hive_mobile_app/data/network/endpoints.dart';
+import 'package:cobe_hive_mobile_app/data/constants/endpoints.dart';
+import 'package:cobe_hive_mobile_app/data/network/interceptors/token_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   final Dio _dio;
-
-  static const _token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg4MTMwNjk3fQ.BL5VySvQpG4X8nxGtBLymJzvCMpWhg8oxiWrJbLGEWM';
-
-  DioClient(this._dio) {
+  final Ref ref;
+  DioClient(this._dio, this.ref) {
     _dio
       ..options.baseUrl = Endpoints.baseUrl
-      ..options.responseType = ResponseType.json;
+      ..options.responseType = ResponseType.json
+      ..interceptors.add(PrettyDioLogger())
+      ..interceptors.add(TokenInterceptor(ref));
   }
 
-  Future<Response> get(String path) async {
-    return _dio.get(
-      path,
-      options: Options(
-        headers: {
-          'authorization': _token,
-        },
-      ),
-    );
-  }
+  Future<Response> get(String path) async => _dio.get(path);
 
-  Future<Response> post(String path, dynamic data) async {
-    debugPrint(path);
-    return _dio.post(
-      path,
-      data: data,
-      options: Options(
-        headers: {
-          'authorization': _token,
-        },
-      ),
-    );
-  }
+  Future<Response> post(String path, dynamic data) async => _dio.post(
+        path,
+        data: data,
+      );
 
-  Future<Response> put(String path, dynamic data) async {
-    return _dio.put(
-      path,
-      data: data,
-      options: Options(
-        headers: {
-          'authorization': _token,
-        },
-      ),
-    );
-  }
+  Future<Response> put(String path, dynamic data) async =>
+      _dio.put(path, data: data);
 
-  Future<Response> delete(String path) async {
-    return _dio.delete(
-      path,
-      options: Options(
-        headers: {
-          'authorization': _token,
-        },
-      ),
-    );
-  }
+  Future<Response> delete(String path) async =>
+      _dio.delete(path, options: Options());
 
-  Future<Response> patch(String path, dynamic data) async {
-    return _dio.patch(
-      path,
-      data: data,
-      options: Options(
-        headers: {
-          'authorization': _token,
-        },
-      ),
-    );
-  }
+  Future<Response> patch(String path, dynamic data) async => _dio.patch(
+        path,
+        data: data,
+      );
 }
