@@ -4,5 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
 
-Future<void> setup() async => getIt.registerSingleton<TokenSharedPreferences>(
-    TokenSharedPreferences(await SharedPreferences.getInstance()));
+setupSharedPrefereces() async =>
+    getIt.registerSingleton<TokenSharedPreferences>(
+        TokenSharedPreferences(await SharedPreferences.getInstance()));

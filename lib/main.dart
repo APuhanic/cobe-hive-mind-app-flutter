@@ -1,4 +1,5 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
+import 'package:cobe_hive_mobile_app/data/services/hive.dart';
 import 'package:cobe_hive_mobile_app/screens/admin_home_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/create_request_screen.dart';
 import 'package:cobe_hive_mobile_app/screens/edit_profile_screen.dart';
@@ -15,7 +16,8 @@ import 'package:cobe_hive_mobile_app/data/services/locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setup();
+  await setupHive();
+  await setupSharedPrefereces();
   runApp(const ProviderScope(
     child: CobeHiveApp(),
   ));

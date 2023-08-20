@@ -15,13 +15,13 @@ class UserListNotifier extends StateNotifier<ApiState<List<User>>> {
     getUsers();
   }
 
-  Future<void> getUsers() async {
+  getUsers() async {
+    state = const ApiState.loading(null);
     try {
-      state = const ApiState.loading(null);
-      final userList = await ref.read(userRepositoryProvider).getUsers();
-      state = ApiState.success(userList);
+      final users = await ref.read(userRepositoryProvider).getUsers();
+      state = ApiState.success(users);
     } on DioException catch (e) {
-      state = ApiState.error(DioExceptions.fromDioError(e).message);
+      state = ApiState.error(DioExceptions.fromDioError(e).toString());
     }
   }
 }
