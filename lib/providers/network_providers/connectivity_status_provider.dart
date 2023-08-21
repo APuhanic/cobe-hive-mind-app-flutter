@@ -1,29 +1,46 @@
-//statenotifier provivder for connectivity status with conectivity_plus package
+import 'dart:async';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-enum ConnectivityStatus { notDetermined, isConnected, isDisonnected }
+final internetConnectionProvider =
+    StateNotifierProvider<InternetConnectionNotifier, bool>(
+  (ref) => InternetConnectionNotifier(),
+);
 
-final connectivityStatusProvider =
-    StateNotifierProvider<ConnectivityStatusProvider, ConnectivityStatus>(
-        (ref) => ConnectivityStatusProvider());
+class InternetConnectionNotifier extends StateNotifier<bool> {
+  StreamSubscription<InternetConnectionStatus>? internetConnectionSubscription;
 
-class ConnectivityStatusProvider extends StateNotifier<ConnectivityStatus> {
-  ConnectivityStatusProvider() : super(ConnectivityStatus.notDetermined) {
-    checkConnectivity();
+  InternetConnectionNotifier() : super(true) {
+    _setInternetCheckParams();
+    _checkForInitialConnection();
+    listenForInternetConnection();
   }
 
-  Future<ConnectivityStatus> checkConnectivity() async {
-    final connectivityResult = await Connectivity().checkConnectivity();
-    if (connectivityResult == ConnectivityResult.none) {
-      state = ConnectivityStatus.isDisonnected;
-      return state;
-    } else if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
-      state = ConnectivityStatus.isConnected;
-      return state;
-    }
-    return ConnectivityStatus.notDetermined;
+  @override
+  void dispose() {
+    super.dispose();
+    internetConnectionSubscription?.cancel();
+  }
+
+  Future<void> listenForInternetConnection() async {
+    internetConnectionSubscription =
+        InternetConnectionChecker().onStatusChange.listen(
+      (InternetConnectionStatus status) {
+        state = status == InternetConnectionStatus.connected;
+      },
+    );
+  }
+
+  _setInternetCheckParams() {
+    InternetConnectionChecker.createInstance(
+      checkTimeout: const Duration(seconds: 1),
+      checkInterval: const Duration(seconds: 1),
+    );
+  }
+
+  _checkForInitialConnection() async {
+    final bool isConnected = await InternetConnectionChecker().hasConnection;
+    state = isConnected;
   }
 }

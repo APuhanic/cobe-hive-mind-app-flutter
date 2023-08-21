@@ -29,4 +29,3 @@ Future<void> setupHive() async {
   await Hive.openBox<LeaveRequest>('absences',
       encryptionCipher: HiveAesCipher(encryptionKeyUint8List));
 }
-// TODO: encrypt

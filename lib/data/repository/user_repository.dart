@@ -18,10 +18,7 @@ class UserRepository {
   final _userBox = Hive.box<User>('users');
 
   Future<List<User>> getUsers() async {
-    if (await ref
-            .read(connectivityStatusProvider.notifier)
-            .checkConnectivity() ==
-        ConnectivityStatus.isConnected) {
+    if (await ref.read(internetConnectionProvider)) {
       return getUsersFromApi();
     }
     return getUsersFromHive();
@@ -47,7 +44,7 @@ class UserRepository {
       return userList;
     } catch (e) {
       debugPrint('Error during API call or JSON parsing: $e');
-      return [];
+      return getUsersFromHive();
     }
   }
 

@@ -31,7 +31,7 @@ dependencies:
   hooks_riverpod: ^2.3.6
   uuid: ^3.0.6
   flutter_secure_storage: ^8.0.0
-
+  internet_connection_checker: ^1.0.0+1
 
 
 dev_dependencies:

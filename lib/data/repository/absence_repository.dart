@@ -14,10 +14,7 @@ class AbsenceRepository {
   AbsenceRepository(this._cobeApi, this.ref);
 
   Future<List<LeaveRequest>> getAbsences() async {
-    if (await ref
-            .read(connectivityStatusProvider.notifier)
-            .checkConnectivity() ==
-        ConnectivityStatus.isConnected) {
+    if (ref.read(internetConnectionProvider)) {
       return getAbsencesFromApi();
     }
     return getAbsencesFromHive();
