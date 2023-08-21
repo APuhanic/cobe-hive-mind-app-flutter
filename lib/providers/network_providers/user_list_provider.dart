@@ -1,8 +1,6 @@
 import 'package:cobe_hive_mobile_app/data/models/api_state.dart';
-import 'package:cobe_hive_mobile_app/data/models/dio_exceptions.dart';
 import 'package:cobe_hive_mobile_app/data/models/user.dart';
 import 'package:cobe_hive_mobile_app/data/repository/user_repository.dart';
-import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final userListProvider =
@@ -15,13 +13,13 @@ class UserListNotifier extends StateNotifier<ApiState<List<User>>> {
     getUsers();
   }
 
-  Future<void> getUsers() async {
+  getUsers() async {
+    state = const ApiState.loading(null);
     try {
-      state = const ApiState.loading(null);
-      final userList = await ref.read(userRepositoryProvider).getUsers();
-      state = ApiState.success(userList);
-    } on DioException catch (e) {
-      state = ApiState.error(DioExceptions.fromDioError(e).message);
+      final users = await ref.read(userRepositoryProvider).getUsers();
+      state = ApiState.success(users);
+    } catch (e) {
+      state = ApiState.error(e.toString());
     }
   }
 }

@@ -1,22 +1,44 @@
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'user.g.dart';
+
+@HiveType(typeId: 1)
 enum UserStatus {
+  @HiveField(0)
   online,
+  @HiveField(1)
   offline,
+  @HiveField(2)
   parental,
+  @HiveField(3)
   away,
+  @HiveField(4)
   sick,
+  @HiveField(5)
   vacation,
+  @HiveField(6)
   other,
 }
 
+@HiveType(typeId: 0)
 class User {
+  @HiveField(0)
   String? id;
+  @HiveField(1)
   String? name;
+  @HiveField(2)
   String? surname;
+  @HiveField(3)
   String? role;
+  @HiveField(4)
   UserStatus? status;
+  @HiveField(5)
   bool? isAdmin;
+  @HiveField(6)
   String? email;
+  @HiveField(7)
   String? phone;
+  @HiveField(8)
   String? imageUrl;
 
   User({

@@ -4,23 +4,19 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-class DioClient {
+abstract class BaseDioClient {
   final Dio _dio;
-  final Ref ref;
-  DioClient(this._dio, this.ref) {
+  BaseDioClient(this._dio) {
     _dio
       ..options.baseUrl = Endpoints.baseUrl
       ..options.responseType = ResponseType.json
-      ..interceptors.add(PrettyDioLogger())
-      ..interceptors.add(TokenInterceptor(ref));
+      ..interceptors.add(PrettyDioLogger());
   }
-
-  Future<Response> get(String path) async => _dio.get(path);
-
   Future<Response> post(String path, dynamic data) async => _dio.post(
         path,
         data: data,
       );
+  Future<Response> get(String path) async => _dio.get(path);
 
   Future<Response> put(String path, dynamic data) async =>
       _dio.put(path, data: data);
@@ -32,4 +28,16 @@ class DioClient {
         path,
         data: data,
       );
+}
+
+class DioClient extends BaseDioClient {
+  final Ref ref;
+
+  DioClient(Dio dio, this.ref) : super(dio) {
+    _dio.interceptors.add(TokenInterceptor(ref, dio));
+  }
+}
+
+class DioLoginClient extends BaseDioClient {
+  DioLoginClient(Dio dio) : super(dio);
 }
