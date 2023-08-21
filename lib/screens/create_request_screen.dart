@@ -26,11 +26,11 @@ class CreateRequestScreen extends HookWidget {
     useAnimation(animationController);
 
     final animations = <Animation<double>>[
-      for (double begin = 0.0; begin < 0.7; begin += 0.1)
+      for (double begin = 0.1; begin < 0.8; begin += 0.1)
         Tween<double>(begin: 500.0, end: 0.0).animate(
           CurvedAnimation(
             parent: animationController,
-            curve: Interval(begin, begin + 0.1, curve: Curves.easeOut),
+            curve: Interval(begin - 0.1, begin + 0.1, curve: Curves.easeOut),
           ),
         ),
     ];
