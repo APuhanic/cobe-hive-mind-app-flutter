@@ -25,56 +25,15 @@ class CreateRequestScreen extends HookWidget {
 
     useAnimation(animationController);
 
-    final headerAnimation = Tween<double>(begin: 500.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(0.0, 0.100, curve: Curves.easeOut),
-      ),
-    );
-
-    final typeOfLeaveAnimation = Tween<double>(begin: 500.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(0.100, 0.200, curve: Curves.easeOut),
-      ),
-    );
-
-    final datePickerAnimation = Tween<double>(begin: 500.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(0.200, 0.300, curve: Curves.easeOut),
-      ),
-    );
-
-    final reasonAnimation = Tween<double>(begin: 500.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(0.300, 0.400, curve: Curves.easeOut),
-      ),
-    );
-
-    final viewPermissionTitleAnimation =
+    final animations = <Animation<double>>[
+      for (double begin = 0.0; begin < 0.7; begin += 0.1)
         Tween<double>(begin: 500.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(0.400, 0.500, curve: Curves.easeOut),
-      ),
-    );
-
-    final viewPermissionSelectorAnimation =
-        Tween<double>(begin: 500.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(0.500, 0.600, curve: Curves.easeOut),
-      ),
-    );
-
-    final buttonAnimation = Tween<double>(begin: 500.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: const Interval(0.600, 0.700, curve: Curves.easeOut),
-      ),
-    );
+          CurvedAnimation(
+            parent: animationController,
+            curve: Interval(begin, begin + 0.1, curve: Curves.easeOut),
+          ),
+        ),
+    ];
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -85,29 +44,29 @@ class CreateRequestScreen extends HookWidget {
           child: Column(
             children: [
               Transform.translate(
-                offset: Offset(headerAnimation.value, 0),
+                offset: Offset(animations[0].value, 0),
                 child: const Padding(
                   padding: EdgeInsets.only(bottom: 40, top: 18),
                   child: CreateRequestHeader(),
                 ),
               ),
               Transform.translate(
-                offset: Offset(typeOfLeaveAnimation.value, 0),
+                offset: Offset(animations[1].value, 0),
                 child: const TypeOfLeaveSelector(),
               ),
               Transform.translate(
-                offset: Offset(datePickerAnimation.value, 0),
+                offset: Offset(animations[2].value, 0),
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 20),
                   child: DatePicker(),
                 ),
               ),
               Transform.translate(
-                offset: Offset(reasonAnimation.value, 0),
+                offset: Offset(animations[3].value, 0),
                 child: const LeaveReason(),
               ),
               Transform.translate(
-                offset: Offset(viewPermissionTitleAnimation.value, 0),
+                offset: Offset(animations[4].value, 0),
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 18),
                   child: Align(
@@ -117,12 +76,12 @@ class CreateRequestScreen extends HookWidget {
                 ),
               ),
               Transform.translate(
-                offset: Offset(viewPermissionSelectorAnimation.value, 0),
+                offset: Offset(animations[5].value, 0),
                 child: const ViewPermissionSelector(),
               ),
               const Expanded(flex: 2, child: SizedBox()),
               Transform.translate(
-                offset: Offset(buttonAnimation.value, 0),
+                offset: Offset(animations[6].value, 0),
                 child: const CreateRequestButtons(),
               ),
               const Expanded(flex: 1, child: SizedBox()),
