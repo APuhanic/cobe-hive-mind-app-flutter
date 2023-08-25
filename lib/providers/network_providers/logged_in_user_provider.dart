@@ -27,9 +27,7 @@ class UserNotifier extends StateNotifier<ApiState<User>> {
     ref.listen(loginProvider, (_, state) {
       state.maybeWhen(
         orElse: () => const ApiState.initial(),
-        success: (id) {
-          return _getUser(id);
-        },
+        success: (id) => _getUser(id),
       );
     });
   }

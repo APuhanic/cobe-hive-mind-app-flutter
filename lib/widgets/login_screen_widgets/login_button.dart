@@ -50,9 +50,7 @@ class LoginButton extends ConsumerWidget {
         ],
       ),
       child: ElevatedButton(
-        onPressed: () {
-          ref.read(loginProvider.notifier).login();
-        },
+        onPressed: () => ref.read(loginProvider.notifier).login(),
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent),

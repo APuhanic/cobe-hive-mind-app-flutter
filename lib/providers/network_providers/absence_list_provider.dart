@@ -18,7 +18,7 @@ class AbsenceListNotifier extends StateNotifier<ApiState<List<LeaveRequest>>> {
 
   getAbsences() async {
     try {
-      const ApiState.loading(null);
+      state = const ApiState.loading(null);
       final absenceList = await absenceRepository.getAbsences();
       state = ApiState.success(absenceList);
     } on DioException catch (e) {

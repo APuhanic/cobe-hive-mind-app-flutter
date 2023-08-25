@@ -4,14 +4,9 @@ import 'package:cobe_hive_mobile_app/widgets/login_screen_widgets/login_button.d
 import 'package:cobe_hive_mobile_app/widgets/login_screen_widgets/password_input.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -1,5 +1,5 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
-import 'package:cobe_hive_mobile_app/capitalize_string.dart';
+import 'package:cobe_hive_mobile_app/utils/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/data/models/user.dart';
 import 'package:cobe_hive_mobile_app/data/constants/endpoints.dart';
 import 'package:cobe_hive_mobile_app/providers/network_providers/selected_user_provider.dart';
@@ -86,16 +86,26 @@ class EmployeeCard extends HookConsumerWidget {
                     ),
                   ],
                 ),
-                isExpanded.value && expansionAnimationController.isCompleted
+                expansionAnimationController.isCompleted
                     ? Column(
                         children: [
                           TextButton(
                             onPressed: () {},
-                            child: const Text('View profile'),
+                            child: const Text('View profile',
+                                style: TextStyle(
+                                  color: AppColors.textAccent,
+                                  fontSize: 20,
+                                )),
                           ),
                           TextButton(
                             onPressed: () {},
-                            child: const Text('Send message'),
+                            child: const Text(
+                              'Send message',
+                              style: TextStyle(
+                                color: AppColors.textAccent,
+                                fontSize: 20,
+                              ),
+                            ),
                           ),
                         ],
                       )

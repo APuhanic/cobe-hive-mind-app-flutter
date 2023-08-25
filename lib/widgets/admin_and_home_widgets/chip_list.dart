@@ -1,5 +1,5 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
-import 'package:cobe_hive_mobile_app/capitalize_string.dart';
+import 'package:cobe_hive_mobile_app/utils/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/providers/home_screen_providers/user_filter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

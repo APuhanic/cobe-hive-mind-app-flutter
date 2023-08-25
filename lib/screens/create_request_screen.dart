@@ -2,7 +2,6 @@ import 'package:cobe_hive_mobile_app/widgets/create_request_widgets/create_reque
 import 'package:cobe_hive_mobile_app/widgets/create_request_widgets/create_request_header.dart';
 import 'package:cobe_hive_mobile_app/widgets/create_request_widgets/date_picker.dart';
 import 'package:cobe_hive_mobile_app/widgets/create_request_widgets/leave_reason.dart';
-
 import 'package:cobe_hive_mobile_app/widgets/create_request_widgets/type_of_leave_selector.dart';
 import 'package:cobe_hive_mobile_app/widgets/create_request_widgets/view_permission_selector.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,6 @@ class CreateRequestScreen extends HookWidget {
 
     useEffect(() {
       animationController.forward();
-
       return null;
     }, const []);
 

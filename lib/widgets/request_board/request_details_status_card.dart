@@ -1,5 +1,5 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
-import 'package:cobe_hive_mobile_app/capitalize_string.dart';
+import 'package:cobe_hive_mobile_app/utils/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/providers/create_request_screen_providers/selected_request_provider.dart';
 import 'package:cobe_hive_mobile_app/widgets/leave_request_status_card/approved_chip.dart';
 import 'package:cobe_hive_mobile_app/widgets/leave_request_status_card/pending_chip.dart';
