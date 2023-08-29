@@ -1,5 +1,5 @@
 import 'package:cobe_hive_mobile_app/data/constants/app_colors.dart';
-import 'package:cobe_hive_mobile_app/capitalize_string.dart';
+import 'package:cobe_hive_mobile_app/utils/capitalize_string.dart';
 import 'package:cobe_hive_mobile_app/data/models/leave_request.dart';
 import 'package:cobe_hive_mobile_app/providers/create_request_screen_providers/view_permission_provider.dart';
 import 'package:flutter/material.dart';

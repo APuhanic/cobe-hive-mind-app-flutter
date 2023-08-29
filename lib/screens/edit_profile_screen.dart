@@ -29,25 +29,7 @@ class EditProfileScreen extends ConsumerWidget {
                     child: EditProfileScreenHeader(),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.3),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: FilledButton(
-                        onPressed: () {},
-                        style: FilledButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          backgroundColor: AppColors.buttonTransparent,
-                        ),
-                        child: const Text(
-                          'Change Image',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const _UserProfileImage(),
                   const SizedBox(height: 30),
                   const Divider(
                     thickness: 1,
@@ -73,6 +55,33 @@ class EditProfileScreen extends ConsumerWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _UserProfileImage extends StatelessWidget {
+  const _UserProfileImage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 15),
+        child: FilledButton(
+          onPressed: () {},
+          style: FilledButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            backgroundColor: AppColors.buttonTransparent,
+          ),
+          child: const Text(
+            'Change Image',
+            style: TextStyle(fontSize: 16),
+          ),
+        ),
       ),
     );
   }

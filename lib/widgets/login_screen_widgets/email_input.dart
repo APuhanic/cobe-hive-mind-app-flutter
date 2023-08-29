@@ -15,7 +15,10 @@ class EmailInput extends ConsumerWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text('Email', style: Theme.of(context).textTheme.bodySmall),
+            child: Text(
+              'Email',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
           TextFormField(
             onChanged: (value) =>
